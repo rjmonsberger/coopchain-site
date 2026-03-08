@@ -1,10 +1,118 @@
+const STORAGE_KEY = "coopchain_user_v2";
 
-const STORAGE_KEY="coopchain_user_v1";
-function getUser(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"null")}catch{return null}}
-function setUser(p){localStorage.setItem(STORAGE_KEY,JSON.stringify(p));refreshAuthUI()}
-function clearUser(){localStorage.removeItem(STORAGE_KEY);refreshAuthUI()}
-function refreshAuthUI(){const u=getUser();document.querySelectorAll("[data-auth-label]").forEach(e=>{e.textContent=u?`Hola, ${u.nombre}`:"Ingresar / Registrarse"});document.querySelectorAll("[data-requires-auth]").forEach(e=>{const t=e.getAttribute("href");if(!u&&t&&!t.includes("registro.html")){e.setAttribute("data-target",t);e.setAttribute("href",`registro.html?next=${encodeURIComponent(t)}`)}else if(u&&e.dataset.target){e.setAttribute("href",e.dataset.target)}});document.querySelectorAll("[data-user-only]").forEach(e=>e.classList.toggle("hidden",!u));document.querySelectorAll("[data-guest-only]").forEach(e=>e.classList.toggle("hidden",!!u))}
-function handleRegistrationForm(){const f=document.querySelector('#registration-form');if(!f)return;const r=new URLSearchParams(location.search).get('next')||'dialogar-con-el-libro.html';f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f);const p={nombre:(d.get('nombre')||'').toString().trim(),apellido:(d.get('apellido')||'').toString().trim(),email:(d.get('email')||'').toString().trim(),empresa:(d.get('empresa')||'').toString().trim(),rol:(d.get('rol')||'').toString().trim(),createdAt:new Date().toISOString()};if(!p.nombre||!p.apellido||!p.email){alert('Completa nombre, apellido y email.');return}setUser(p);location.href=r})}
-function injectPromptLinks(){document.querySelectorAll('[data-prompt]').forEach(b=>{b.addEventListener('click',()=>{const p=b.getAttribute('data-prompt');const box=document.querySelector('#starter-output');if(box){box.value=p;box.scrollIntoView({behavior:'smooth',block:'center'})}navigator.clipboard&&navigator.clipboard.writeText(p).catch(()=>{});const n=document.querySelector('#copied-note');if(n){n.classList.remove('hidden');setTimeout(()=>n.classList.add('hidden'),1800)}})})}
-function bindLogout(){document.querySelectorAll('[data-logout]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();clearUser();location.href='index.html'}))}
-document.addEventListener('DOMContentLoaded',()=>{refreshAuthUI();handleRegistrationForm();injectPromptLinks();bindLogout()});
+function getUser() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); }
+  catch { return null; }
+}
+
+function setUser(user) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  refreshAuthUI();
+}
+
+function clearUser() {
+  localStorage.removeItem(STORAGE_KEY);
+  refreshAuthUI();
+}
+
+function refreshAuthUI() {
+  const user = getUser();
+
+  document.querySelectorAll("[data-auth-label]").forEach(el => {
+    el.textContent = user ? `Hola, ${user.nombre}` : "Ingresar / Registrarse";
+  });
+
+  document.querySelectorAll("[data-requires-auth]").forEach(el => {
+    const directHref = el.getAttribute("href");
+    if (!user && directHref && !directHref.includes("registro.html")) {
+      el.setAttribute("data-target", directHref);
+      el.setAttribute("href", `registro.html?next=${encodeURIComponent(directHref)}`);
+    } else if (user && el.dataset.target) {
+      el.setAttribute("href", el.dataset.target);
+    }
+  });
+
+  document.querySelectorAll("[data-user-only]").forEach(el => {
+    el.classList.toggle("hidden", !user);
+  });
+
+  document.querySelectorAll("[data-guest-only]").forEach(el => {
+    el.classList.toggle("hidden", !!user);
+  });
+}
+
+function guardProtectedPages() {
+  const protectedPage = document.body.dataset.protectedPage === "true";
+  if (!protectedPage) return;
+  const user = getUser();
+  if (!user) {
+    const current = window.location.pathname.split("/").pop() || "dialogar-con-el-libro.html";
+    window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
+  }
+}
+
+function handleRegistrationForm() {
+  const form = document.querySelector("#registration-form");
+  if (!form) return;
+  const next = new URLSearchParams(location.search).get("next") || "dialogar-con-el-libro.html";
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const payload = {
+      nombre: (data.get("nombre") || "").toString().trim(),
+      apellido: (data.get("apellido") || "").toString().trim(),
+      email: (data.get("email") || "").toString().trim(),
+      empresa: (data.get("empresa") || "").toString().trim(),
+      rol: (data.get("rol") || "").toString().trim(),
+      createdAt: new Date().toISOString()
+    };
+
+    if (!payload.nombre || !payload.apellido || !payload.email) {
+      alert("Completa nombre, apellido y email");
+      return;
+    }
+
+    setUser(payload);
+    window.location.href = next;
+  });
+}
+
+function injectPromptLinks() {
+  document.querySelectorAll("[data-prompt]").forEach(button => {
+    button.addEventListener("click", () => {
+      const prompt = button.getAttribute("data-prompt") || "";
+      const output = document.querySelector("#starter-output");
+      if (output) {
+        output.value = prompt;
+        output.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(prompt).catch(() => {});
+      }
+      const note = document.querySelector("#copied-note");
+      if (note) {
+        note.classList.remove("hidden");
+        setTimeout(() => note.classList.add("hidden"), 1800);
+      }
+    });
+  });
+}
+
+function bindLogout() {
+  document.querySelectorAll("[data-logout]").forEach(button => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      clearUser();
+      window.location.href = "index.html";
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  guardProtectedPages();
+  refreshAuthUI();
+  handleRegistrationForm();
+  injectPromptLinks();
+  bindLogout();
+});
