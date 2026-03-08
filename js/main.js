@@ -1,4 +1,5 @@
 const STORAGE_KEY = "coopchain_user_v2";
+const REGISTRATIONS_KEY = "coopchain_registrations_v1";
 
 function getUser() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); }
@@ -13,6 +14,58 @@ function setUser(user) {
 function clearUser() {
   localStorage.removeItem(STORAGE_KEY);
   refreshAuthUI();
+}
+
+function getRegistrations() {
+  try { return JSON.parse(localStorage.getItem(REGISTRATIONS_KEY) || "[]"); }
+  catch { return []; }
+}
+
+function saveRegistrations(list) {
+  localStorage.setItem(REGISTRATIONS_KEY, JSON.stringify(list));
+}
+
+function appendRegistration(entry) {
+  const regs = getRegistrations();
+  regs.push(entry);
+  saveRegistrations(regs);
+}
+
+function exportRegistrationsCSV() {
+  const regs = getRegistrations();
+  if (!regs.length) {
+    alert("No hay registros para exportar.");
+    return;
+  }
+
+  const headers = ["nombre","apellido","email","empresa","rol","createdAt"];
+  const rows = regs.map(r => headers.map(h => {
+    const v = r[h] || "";
+    return `"${String(v).replace(/"/g,'""')}"`;
+  }).join(","));
+
+  const csv = [headers.join(","), ...rows].join("\r\n");
+  const now = new Date();
+  const pad = n => String(n).padStart(2,"0");
+  const fname = `registrations-${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}.csv`;
+  downloadBlob(fname, csv, "text/csv;charset=utf-8;");
+}
+
+function downloadBlob(filename, content, mime) {
+  const blob = new Blob([content], { type: mime || "application/octet-stream" });
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(blob, filename);
+  } else {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 100);
+  }
 }
 
 function refreshAuthUI() {
@@ -73,7 +126,29 @@ function handleRegistrationForm() {
       return;
     }
 
+    // keep existing behavior (session)
     setUser(payload);
+
+    // append to local registrations list so you can export later
+    appendRegistration({
+      nombre: payload.nombre,
+      apellido: payload.apellido,
+      email: payload.email,
+      empresa: payload.empresa,
+      rol: payload.rol,
+      createdAt: payload.createdAt
+    });
+
+    // optional: show a brief confirmation
+    try {
+      const note = document.querySelector("#registro-guardado-note");
+      if (note) {
+        note.classList.remove("hidden");
+        setTimeout(() => note.classList.add("hidden"), 1500);
+      }
+    } catch (e) {}
+
+    // redirect to next
     window.location.href = next;
   });
 }
@@ -99,6 +174,19 @@ function injectPromptLinks() {
   });
 }
 
+function bindExportButton() {
+  const btn = document.querySelector("#export-registrations");
+  if (!btn) return;
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    exportRegistrationsCSV();
+  });
+
+  // show/hide button if there are registrations
+  const regs = getRegistrations();
+  btn.classList.toggle("hidden", regs.length === 0);
+}
+
 function bindLogout() {
   document.querySelectorAll("[data-logout]").forEach(button => {
     button.addEventListener("click", (event) => {
@@ -114,5 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshAuthUI();
   handleRegistrationForm();
   injectPromptLinks();
+  bindExportButton();
   bindLogout();
 });

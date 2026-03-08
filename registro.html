@@ -64,6 +64,12 @@
           </div>
           <p class="helper">En esta versión el registro funciona como demo local. Más adelante puede conectarse con backend y base de datos real.</p>
         </form>
+
+        <!-- botón para exportar registros guardados en localStorage -->
+        <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+          <button id="export-registrations" class="btn btn-ghost hidden">Exportar registros (CSV)</button>
+          <span id="registro-guardado-note" class="helper hidden" style="margin-left:8px;">Registro guardado</span>
+        </div>
       </div>
     </section>
   </main>
