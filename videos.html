@@ -4,33 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoopchAIn | Videos</title>
-  <meta
-    name="description"
-    content="CoopchAIn: videos-resumen del libro y canal audiovisual del proyecto."
-  />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Videos-resumen del libro CoopchAIn y acceso al canal coopchain_pro" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
 </head>
-<body>
+<body data-protected-page="true">
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="index.html">
         <span class="brand-mark"></span>
         <span>
-          <div class="brand-word">CoopchAIn</div>
-          <div class="brand-sub">Blockchain + Cooperativismo + IA</div>
+          <strong class="brand-word">CoopchAIn</strong>
+          <span class="brand-sub">Blockchain + Cooperativismo + IA</span>
         </span>
       </a>
-
       <nav class="nav" aria-label="Principal">
         <a href="index.html">Inicio</a>
         <a href="dialogar-con-el-libro.html">Dialogar con el libro</a>
-        <a href="videos.html" class="active">Videos</a>
+        <a class="active" href="videos.html">Videos</a>
         <a href="blog.html">Blog</a>
-        <a href="index.html#autor">Autor</a>
       </nav>
-
       <div class="header-actions">
-        <a class="btn btn-secondary" data-auth-label href="registro.html">Ingresar / Registrarse</a>
+        <a class="btn btn-outline" data-auth-label href="registro.html?next=videos.html">Ingresar / Registrarse</a>
         <a class="btn btn-ghost hidden" data-user-only data-logout href="#">Salir</a>
       </div>
     </div>
@@ -38,103 +32,79 @@
 
   <main>
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Subpágina protegida</span>
-          <h1>Videos del libro.</h1>
+      <div class="container split split-hero">
+        <div class="hero-copy">
+          <h1>Videos del libro</h1>
           <p class="lead">
-            Aquí se alojan los microvideos por capítulo. Esta sección conecta con el canal audiovisual del proyecto y organiza el recorrido temático del libro.
+            Esta sección organiza el recorrido audiovisual del proyecto y funciona con el mismo registro que habilita Dialogar con el libro.
           </p>
           <p>
-            En esta etapa, los accesos apuntan al canal <strong>coopchain_pro</strong>. Más adelante puedes reemplazar cada bloque por embeds específicos por capítulo.
+            Por ahora los accesos dirigen al canal <strong>coopchain_pro</strong>. Más adelante cada tarjeta puede enlazar a un video específico por capítulo.
           </p>
-
           <div class="actions">
-            <a class="btn btn-primary" href="registro.html?next=videos.html" data-guest-only>Registrarme para ver videos</a>
-            <a class="btn btn-secondary hidden" data-user-only href="#caps">Ir a capítulos</a>
+            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Abrir canal de YouTube</a>
           </div>
         </div>
-
-        <div class="hero-card">
+        <figure class="image-panel hero-figure">
           <img src="images/tres_futuros_posibles.png" alt="Tres futuros posibles" />
-        </div>
+        </figure>
       </div>
     </section>
 
-    <section class="section" id="caps">
+    <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Serie audiovisual</span>
-          <h2>Capítulos listos para incorporar video.</h2>
-          <p>
-            Cada tarjeta puede convertirse luego en un video individual o en una playlist específica. Por ahora, todos los accesos pueden dirigir al canal principal.
-          </p>
+          <h2>Serie audiovisual por capítulos</h2>
+          <p>Cada tarjeta resume un bloque del libro y enlaza al canal mientras se completa la biblioteca audiovisual.</p>
         </div>
 
         <div class="grid-3">
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">01</div>
             <div class="video-body">
               <h3>Un ADN en común</h3>
-              <p>Cooperativismo como blockchain sin código, gobernanza distribuida y vínculos antes del protocolo.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <p>Cooperativismo como blockchain sin código, gobernanza distribuida y confianza institucional.</p>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
-
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">02</div>
             <div class="video-body">
               <h3>Blockchain sin mitos</h3>
-              <p>Confianza distribuida, límites de la tecnología y lugar de la organización humana.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <p>Arquitectura de confianza, límites del protocolo y papel de la organización humana.</p>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
-
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">03</div>
             <div class="video-body">
               <h3>Infraestructura humana distribuida</h3>
-              <p>Cooperativismo como red viva, subversión histórica y arquitectura social resiliente.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <p>Cooperativismo como red viva, coordinación y nueva escala institucional.</p>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
-
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">04</div>
             <div class="video-body">
               <h3>Aprendizaje mutuo con Web3</h3>
               <p>Qué aprende Web3 del cooperativismo y qué aprende el cooperativismo de Web3.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
-
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">05</div>
             <div class="video-body">
               <h3>Nueva infraestructura financiera</h3>
-              <p>Stablecoins, interoperabilidad, rieles de valor y qué cambia para cooperativas y mutuales.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <p>Stablecoins, interoperabilidad y transformaciones para cooperativas y mutuales.</p>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
-
-          <article class="card video-card">
+          <article class="video-card">
             <div class="video-thumb">06</div>
             <div class="video-body">
               <h3>Post-singularidad</h3>
               <p>IA, propósito, comunidad y diseño institucional para habitar el futuro.</p>
-              <div class="actions">
-                <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver en YouTube</a>
-              </div>
+              <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.youtube.com/@coopchain_pro">Ver video</a>
             </div>
           </article>
         </div>
@@ -144,11 +114,11 @@
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="small"><strong>CoopchAIn</strong> · Plataforma editorial del libro y su ecosistema conversacional.</div>
-      <div class="small">Sitio base listo para Vercel · ES activa · EN prevista</div>
+      <div class="small"><strong>CoopchAIn</strong> · Registro único para Dialogar con el libro y Videos</div>
+      <div class="small">Canal actual: coopchain_pro</div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

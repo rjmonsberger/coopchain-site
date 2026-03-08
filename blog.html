@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoopchAIn | Blog</title>
-  <meta name="description" content="CoopchAIn: blog, notas y conversación pública alrededor del libro y su universo conceptual." />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Ideas, notas y conversación pública alrededor del universo CoopchAIn" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
 </head>
 <body>
   <header class="site-header">
@@ -13,19 +13,19 @@
       <a class="brand" href="index.html">
         <span class="brand-mark"></span>
         <span>
-          <div class="brand-word">CoopchAIn</div>
-          <div class="brand-sub">Blockchain + Cooperativismo + IA</div>
+          <strong class="brand-word">CoopchAIn</strong>
+          <span class="brand-sub">Blockchain + Cooperativismo + IA</span>
         </span>
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="index.html">Inicio</a>
         <a href="dialogar-con-el-libro.html">Dialogar con el libro</a>
         <a href="videos.html">Videos</a>
-        <a href="blog.html" class="active">Blog</a>
+        <a class="active" href="blog.html">Blog</a>
         <a href="index.html#autor">Autor</a>
       </nav>
       <div class="header-actions">
-        <a class="btn btn-secondary" data-auth-label href="registro.html">Ingresar / Registrarse</a>
+        <a class="btn btn-outline" data-auth-label href="registro.html">Ingresar / Registrarse</a>
         <a class="btn btn-ghost hidden" data-user-only data-logout href="#">Salir</a>
       </div>
     </div>
@@ -33,35 +33,40 @@
 
   <main>
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Blog</span>
-          <h1>Ideas, notas y conversación pública.</h1>
-          <p class="lead">El blog es la capa abierta del proyecto: lectura libre, descubrimiento orgánico y espacio para expandir temas del libro con artículos más breves y frecuentes.</p>
-          <p>En esta versión inicial se incluyen artículos demo listos para reemplazar por contenido real. Puedes mantener la lectura abierta y reservar los comentarios para usuarios registrados cuando pases a backend.</p>
+      <div class="container split split-hero">
+        <div class="hero-copy">
+          <h1>Ideas, notas y conversación pública</h1>
+          <p class="lead">
+            Este espacio acompaña al libro con reflexiones, comentarios y futuras actualizaciones abiertas para lectores, aliados y curiosos del proyecto.
+          </p>
+          <p>
+            El blog está pensado como un terreno de intercambio: un lugar para traducir ideas complejas, comentar hallazgos y ampliar el ecosistema intelectual de CoopchAIn.
+          </p>
         </div>
-        <div class="hero-card">
+        <figure class="image-panel hero-figure">
           <img src="images/Imagen blog.png" alt="Imagen del blog CoopchAIn" />
-        </div>
+        </figure>
       </div>
     </section>
 
     <section class="section">
       <div class="container blog-list">
         <article class="blog-post">
-          <h3>La cooperación no compite con blockchain: la antecede</h3>
-          <p>Antes del código existieron asambleas, reglas compartidas y arquitecturas institucionales distribuidas. El problema no es si blockchain reemplaza a las cooperativas, sino cómo ambas pueden reforzarse.</p>
-          <div class="tag-row"><span class="tag">Cooperativismo</span><span class="tag">Blockchain</span></div>
+          <div class="tag-row"><span class="tag">Gobernanza</span><span class="tag">Cooperación</span></div>
+          <h3>La calidad de los vínculos como problema institucional</h3>
+          <p>La pregunta del futuro no será solo qué tecnología usamos, sino qué tipo de vínculos, acuerdos y procesos sostienen la legitimidad de esa tecnología.</p>
         </article>
+
         <article class="blog-post">
-          <h3>La IA vuelve trivial la eficiencia, no la gobernanza</h3>
-          <p>Cuando la eficiencia deja de ser escasa, el cuello de botella pasa a ser institucional. El verdadero problema del futuro no es técnico: es quién diseña, controla y legitima las reglas.</p>
-          <div class="tag-row"><span class="tag">IA</span><span class="tag">Gobernanza</span></div>
+          <div class="tag-row"><span class="tag">Blockchain</span><span class="tag">Infraestructura</span></div>
+          <h3>Desbloquear blockchain más allá de la especulación</h3>
+          <p>Blockchain no importa solo como activo o plataforma financiera. Importa como arquitectura de confianza, memoria compartida y reglas verificables.</p>
         </article>
+
         <article class="blog-post">
-          <h3>Qué significa diseñar una post-singularidad habitable</h3>
-          <p>No basta con más tecnología. Hace falta una arquitectura social que sostenga propósito, identidad y agencia cuando el trabajo deja de ordenar la vida como antes.</p>
-          <div class="tag-row"><span class="tag">Post-singularidad</span><span class="tag">Diseño institucional</span></div>
+          <div class="tag-row"><span class="tag">IA</span><span class="tag">Post-singularidad</span></div>
+          <h3>Cuando la eficiencia deja de ser una ventaja humana</h3>
+          <p>Si la IA convierte la eficiencia en una propiedad del sistema, entonces la competencia entre instituciones se desplaza hacia la gobernanza, el propósito y la comunidad.</p>
         </article>
       </div>
     </section>
@@ -69,11 +74,11 @@
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="small"><strong>CoopchAIn</strong> · Plataforma editorial del libro y su ecosistema conversacional.</div>
-      <div class="small">Sitio base listo para Vercel · ES activa · EN prevista</div>
+      <div class="small"><strong>CoopchAIn</strong> · Blog público del proyecto</div>
+      <div class="small">Nuevos artículos y comentarios podrán añadirse en iteraciones futuras</div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>
