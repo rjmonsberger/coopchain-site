@@ -1,5 +1,4 @@
 const STORAGE_KEY = "coopchain_user_v2";
-const REGISTRATIONS_KEY = "coopchain_registrations_v1";
 
 function getUser() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); }
@@ -16,57 +15,22 @@ function clearUser() {
   refreshAuthUI();
 }
 
-function getRegistrations() {
-  try { return JSON.parse(localStorage.getItem(REGISTRATIONS_KEY) || "[]"); }
-  catch { return []; }
-}
-
-function saveRegistrations(list) {
-  localStorage.setItem(REGISTRATIONS_KEY, JSON.stringify(list));
-}
-
-function appendRegistration(entry) {
-  const regs = getRegistrations();
-  regs.push(entry);
-  saveRegistrations(regs);
-}
-
-function exportRegistrationsCSV() {
-  const regs = getRegistrations();
-  if (!regs.length) {
-    alert("No hay registros para exportar.");
+function showMessage(text, type) {
+  const container = document.querySelector('#registro-messages');
+  if (!container) {
+    alert(text);
     return;
   }
-
-  const headers = ["nombre","apellido","email","empresa","rol","createdAt"];
-  const rows = regs.map(r => headers.map(h => {
-    const v = r[h] || "";
-    return `"${String(v).replace(/"/g,'""')}"`;
-  }).join(","));
-
-  const csv = [headers.join(","), ...rows].join("\r\n");
-  const now = new Date();
-  const pad = n => String(n).padStart(2,"0");
-  const fname = `registrations-${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}.csv`;
-  downloadBlob(fname, csv, "text/csv;charset=utf-8;");
+  container.textContent = '';
+  const el = document.createElement('div');
+  el.className = 'helper';
+  if (type === 'error') el.style.color = '#a00';
+  if (type === 'success') el.style.color = '#0a7';
+  el.textContent = text;
+  container.appendChild(el);
 }
 
-function downloadBlob(filename, content, mime) {
-  const blob = new Blob([content], { type: mime || "application/octet-stream" });
-  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-    window.navigator.msSaveOrOpenBlob(blob, filename);
-  } else {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      URL.revokeObjectURL(a.href);
-      a.remove();
-    }, 100);
-  }
-}
+// registration export/localStorage helpers removed — Supabase will store records
 
 function refreshAuthUI() {
   const user = getUser();
@@ -126,30 +90,44 @@ function handleRegistrationForm() {
       return;
     }
 
-    // keep existing behavior (session)
-    setUser(payload);
+    // Submit to Supabase table `Registros` using v2 client (loaded via CDN)
+    const SUPABASE_URL = window.NEXT_PUBLIC_SUPABASE_URL || window.__NEXT_PUBLIC_SUPABASE_URL || (document.querySelector('meta[name="NEXT_PUBLIC_SUPABASE_URL"]') || {}).content;
+    const SUPABASE_KEY = window.NEXT_PUBLIC_SUPABASE_ANON_KEY || window.__NEXT_PUBLIC_SUPABASE_ANON_KEY || (document.querySelector('meta[name="NEXT_PUBLIC_SUPABASE_ANON_KEY"]') || {}).content;
 
-    // append to local registrations list so you can export later
-    appendRegistration({
-      nombre: payload.nombre,
-      apellido: payload.apellido,
-      email: payload.email,
-      empresa: payload.empresa,
-      rol: payload.rol,
-      createdAt: payload.createdAt
-    });
+    if (!SUPABASE_URL || !SUPABASE_KEY || !window.supabase) {
+      showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
+      return;
+    }
 
-    // optional: show a brief confirmation
     try {
-      const note = document.querySelector("#registro-guardado-note");
-      if (note) {
-        note.classList.remove("hidden");
-        setTimeout(() => note.classList.add("hidden"), 1500);
-      }
-    } catch (e) {}
+      const { createClient } = supabase;
+      const supa = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // redirect to next
-    window.location.href = next;
+      (async () => {
+        const { data, error } = await supa
+          .from('Registros')
+          .insert([{ nombre: payload.nombre, apellido: payload.apellido, email: payload.email, empresa: payload.empresa, cargo: payload.rol }]);
+
+        if (error) {
+          // Postgres unique_violation code is 23505
+          if (error.code === '23505' || (error.details && error.details.includes('duplicate'))) {
+            showMessage('Este email ya está registrado.', 'error');
+            return;
+          }
+          showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
+          return;
+        }
+
+        // success: optionally set session-like UI, then redirect
+        setUser(payload);
+        showMessage('Registro exitoso. Redirigiendo...', 'success');
+        setTimeout(() => {
+          window.location.href = next;
+        }, 1100);
+      })();
+    } catch (e) {
+      showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
+    }
   });
 }
 
@@ -175,16 +153,7 @@ function injectPromptLinks() {
 }
 
 function bindExportButton() {
-  const btn = document.querySelector("#export-registrations");
-  if (!btn) return;
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    exportRegistrationsCSV();
-  });
-
-  // show/hide button if there are registrations
-  const regs = getRegistrations();
-  btn.classList.toggle("hidden", regs.length === 0);
+  // Export button removed — no-op
 }
 
 function bindLogout() {
