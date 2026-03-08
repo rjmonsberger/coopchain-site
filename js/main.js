@@ -91,8 +91,8 @@ function handleRegistrationForm() {
     }
 
     // Submit to Supabase table `Registros` using v2 client (loaded via CDN)
-    const SUPABASE_URL = window.NEXT_PUBLIC_SUPABASE_URL || window.__NEXT_PUBLIC_SUPABASE_URL || (document.querySelector('meta[name="NEXT_PUBLIC_SUPABASE_URL"]') || {}).content;
-    const SUPABASE_KEY = window.NEXT_PUBLIC_SUPABASE_ANON_KEY || window.__NEXT_PUBLIC_SUPABASE_ANON_KEY || (document.querySelector('meta[name="NEXT_PUBLIC_SUPABASE_ANON_KEY"]') || {}).content;
+    const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_z8arSuDiiC6xz46ADV5pKg_dOYmOhBz';
 
     if (!SUPABASE_URL || !SUPABASE_KEY || !window.supabase) {
       showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
