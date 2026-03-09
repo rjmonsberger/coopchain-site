@@ -172,13 +172,12 @@ textarea{min-height:140px;resize:vertical}
 }
 .image-caption{
   display:block;
-  margin-top:16px;
-  padding:0 4px;
-  font-size:.92rem;
-  line-height:1.75;
+  margin-top:24px;
+  padding-left:18px;
+  font-size:1rem;
+  line-height:2.2;
   color:var(--muted);
   font-style:italic;
-  letter-spacing:.01em;
+  letter-spacing:.02em;
   border-left:3px solid var(--green);
-  padding-left:14px;
 }
