@@ -5,11 +5,11 @@
   --line:#d9d1c5;
   --ink:#23211e;
   --muted:#5f615e;
-  --blue:#174f84;
-  --blue-2:#2b88a0;
-  --green:#6d8f5d;
-  --green-soft:#e6eee1;
-  --copper:#b78958;
+  --blue:#2c6e8a;
+  --blue-2:#5ab8c4;
+  --green:#4a8c6e;
+  --green-soft:#e8f4ef;
+  --copper:#c47c3a;
   --white:#ffffff;
   --shadow:0 14px 28px rgba(18,35,52,.08);
   --radius:24px;
@@ -77,7 +77,7 @@ a{color:inherit}
   letter-spacing:.14em;
   font-size:.78rem;
   font-weight:800;
-  color:var(--green)
+  color:#4a8c6e
 }
 .lead{font-size:1.12rem;color:var(--ink)!important}
 .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
@@ -102,8 +102,8 @@ a{color:inherit}
 .section{padding:58px 0}
 .section-soft{
   background:linear-gradient(180deg, rgba(255,255,255,.3), rgba(230,238,225,.28));
-  border-top:1px solid rgba(217,209,197,.9);
-  border-bottom:1px solid rgba(217,209,197,.9)
+  border-top: 2px solid rgba(74,140,110,.18);
+  border-bottom: 2px solid rgba(74,140,110,.18)
 }
 .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .stack-grid{display:grid;gap:18px}
@@ -117,7 +117,7 @@ a{color:inherit}
 .card-index,.icon-badge{
   display:inline-flex;align-items:center;justify-content:center;
   width:52px;height:42px;border-radius:14px;
-  background:var(--green-soft);color:var(--blue);font-weight:800;margin-bottom:16px
+  background:rgba(74,140,110,.12);color:#2c6e8a;font-weight:800;margin-bottom:16px
 }
 .info-card h3,.prompt-card h3,.video-body h3,.blog-post h3{
   margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:1.1rem;color:var(--ink)
