@@ -57,7 +57,7 @@ a{color:inherit}
 .header-actions{display:flex;gap:12px;align-items:center}
 .hero{padding:72px 0 54px}
 .split{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center}
-.split-top{align-items:start}
+.split-top{align-items:stretch}
 .split-hero{gap:40px}
 .hero-copy h1,.section h1,.section h2{
   margin:0 0 16px;
