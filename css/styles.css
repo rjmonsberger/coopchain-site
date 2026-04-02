@@ -126,12 +126,12 @@ a{color:inherit}
 .notice{margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(109,143,93,.12);border:1px solid rgba(109,143,93,.22)}
 .faq{padding:0;overflow:hidden}
 .faq summary{
-  cursor:pointer;list-style:none;padding:18px 22px;font-weight:800;position:relative;color:var(--ink)
+  cursor:pointer;list-style:none;padding:18px 22px;font-weight:800;position:relative;color:#1a2e1a;
 }
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";position:absolute;right:22px;top:14px;font-size:1.4rem;color:var(--green)}
 .faq[open] summary::after{content:"–"}
-.faq .answer{padding:0 22px 18px;border-top:1px solid var(--line)}
+.faq .answer{padding:0 22px 18px;border-top:1px solid var(--line);color:#1a2e1a}
 .faq-list{display:grid;gap:12px}
 .form-shell{padding:26px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -280,3 +280,8 @@ body{padding-bottom:72px;}
   line-height:1.8;
   max-width:680px;
 }
+
+.form-shell h2{color:#1a2e1a;}
+.form-shell p{color:#2a4a2a;}
+.form-shell a{color:#1a6640;}
+.text-link{color:#1a6640;font-weight:700;}
