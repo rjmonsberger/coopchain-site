@@ -109,9 +109,10 @@ a{color:inherit}
 .stack-grid{display:grid;gap:18px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .info-card,.prompt-card,.blog-post,.video-card,.form-shell,.faq{
-  background:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.95);
   border:1px solid var(--line);border-radius:var(--radius-sm);
-  box-shadow:var(--shadow)
+  box-shadow:var(--shadow);
+  color:#1a2e1a;
 }
 .info-card,.prompt-card,.blog-post{padding:22px}
 .card-index,.icon-badge{
@@ -120,7 +121,7 @@ a{color:inherit}
   background:rgba(74,140,110,.12);color:#2c6e8a;font-weight:800;margin-bottom:16px
 }
 .info-card h3,.prompt-card h3,.video-body h3,.blog-post h3{
-  margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:1.1rem;color:var(--ink)
+  margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-size:1.1rem;color:#1a2e1a;
 }
 .notice{margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(109,143,93,.12);border:1px solid rgba(109,143,93,.22)}
 .faq{padding:0;overflow:hidden}
@@ -136,10 +137,10 @@ a{color:inherit}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-group{display:grid;gap:8px}
 .form-group.full{grid-column:1 / -1}
-label{font-weight:700;color:var(--ink)}
+label{font-weight:700;color:#1a2e1a}
 input, textarea{
   width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);
-  background:#fff;font-size:1rem;color:var(--ink)
+  background:#ffffff;font-size:1rem;color:#1a2e1a;
 }
 textarea{min-height:140px;resize:vertical}
 .video-card{overflow:hidden}
@@ -192,7 +193,7 @@ textarea{min-height:140px;resize:vertical}
   margin-top:36px;
 }
 .camino-card{
-  background:#ffffff;
+  background:rgba(255,255,255,.95);
   border:1px solid var(--line);
   border-radius:var(--radius-sm);
   box-shadow:var(--shadow);
@@ -201,6 +202,7 @@ textarea{min-height:140px;resize:vertical}
   flex-direction:column;
   gap:12px;
   transition:transform .2s ease, box-shadow .2s ease;
+  color:#1a2e1a;
 }
 .camino-card:hover{
   transform:translateY(-4px);
@@ -221,10 +223,10 @@ textarea{min-height:140px;resize:vertical}
 .camino-card h3{
   font-family:Georgia,"Times New Roman",serif;
   font-size:1.4rem;
-  color:var(--blue);
+  color:#1a2e1a;
   margin:0;
 }
-.camino-card p{color:var(--muted);font-size:.95rem;line-height:1.7;flex:1;}
+.camino-card p{color:#3a5a3a;font-size:.95rem;line-height:1.7;flex:1;}
 .camino-btn{margin-top:8px;align-self:flex-start;}
 
 /* ── NAV BOTTOM ── */
