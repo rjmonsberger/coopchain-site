@@ -321,3 +321,11 @@ body{padding-bottom:72px;}
 .autor-split{
   align-items:flex-start;
 }
+
+.section-soft .copy-block p,
+.section-soft .copy-block strong{
+  color:#e8f4ef;
+}
+.image-caption{
+  color:#1a2e1a;
+}
