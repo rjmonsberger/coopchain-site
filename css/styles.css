@@ -271,3 +271,5 @@ body{padding-bottom:72px;}
 @media(max-width:980px){
   .caminos-grid{grid-template-columns:1fr;}
 }
+
+.brand-ai { color: #c47c3a; }
