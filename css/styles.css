@@ -273,3 +273,10 @@ body{padding-bottom:72px;}
 }
 
 .brand-ai { color: #c47c3a; }
+
+.puertas-intro{
+  font-size:1.05rem;
+  color:var(--ink);
+  line-height:1.75;
+  max-width:680px;
+}
