@@ -111,7 +111,22 @@ function handleRegistrationForm() {
         if (error) {
           // Postgres unique_violation code is 23505
           if (error.code === '23505' || (error.details && error.details.includes('duplicate'))) {
-            showMessage('Este email ya está registrado.', 'error');
+            // Email ya existe — intentar login buscando el registro en Supabase
+            const { data: existingUser, error: fetchError } = await supa
+              .from('Registros')
+              .select('nombre, apellido, email, empresa, cargo')
+              .eq('email', payload.email)
+              .single();
+
+            if (fetchError || !existingUser) {
+              showMessage('Este email ya está registrado pero no pudimos verificarlo. Intentá de nuevo.', 'error');
+              return;
+            }
+
+            // Login exitoso: guardar sesión y redirigir
+            setUser({ nombre: existingUser.nombre, apellido: existingUser.apellido, email: existingUser.email });
+            showMessage(`Bienvenido de nuevo, ${existingUser.nombre}. Redirigiendo...`, 'success');
+            setTimeout(() => { window.location.href = next; }, 1100);
             return;
           }
           showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
