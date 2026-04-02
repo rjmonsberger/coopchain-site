@@ -310,6 +310,7 @@ body{padding-bottom:72px;}
   font-size:clamp(2.2rem,4vw,3.8rem);
   margin-bottom:32px;
   color:var(--ink);
+  text-align:center;
 }
 .autor-figura img{
   width:100%;
