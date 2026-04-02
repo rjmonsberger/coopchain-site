@@ -305,3 +305,18 @@ body{padding-bottom:72px;}
 #autor .split{
   align-items:stretch;
 }
+
+.autor-nombre{
+  font-size:clamp(2.2rem,4vw,3.8rem);
+  margin-bottom:32px;
+  color:var(--ink);
+}
+.autor-figura img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:var(--radius);
+}
+.autor-split{
+  align-items:flex-start;
+}
