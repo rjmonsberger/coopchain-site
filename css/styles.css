@@ -329,3 +329,7 @@ body{padding-bottom:72px;}
 .image-caption{
   color:#1a2e1a;
 }
+
+.hero-copy p{
+  color:var(--ink);
+}
