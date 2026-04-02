@@ -22,7 +22,7 @@ body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
   color:var(--ink);
-  background: #ffffff;
+  background: var(--bg);
   line-height:1.6;
 }
 img{max-width:100%;display:block}
@@ -32,7 +32,7 @@ a{color:inherit}
 .site-header{
   position:sticky;top:0;z-index:20;
   backdrop-filter:blur(14px);
-  background:rgba(250,247,241,.9);
+  background:rgba(13,43,31,.95);
   border-bottom:1px solid rgba(217,209,197,.85)
 }
 .header-row{
@@ -49,7 +49,7 @@ a{color:inherit}
   content:"";position:absolute;inset:8px;border-radius:10px;
   border:1.5px solid rgba(255,255,255,.78);transform:rotate(10deg)
 }
-.brand-word{display:block;font-size:1.1rem;font-weight:800;color:var(--blue)}
+.brand-word{display:block;font-size:1.1rem;font-weight:800;color:var(--green)}
 .brand-sub{display:block;font-size:.8rem;color:var(--muted)}
 .nav{display:flex;gap:22px;align-items:center}
 .nav a{text-decoration:none;font-size:.95rem;font-weight:700;color:var(--ink)}
@@ -65,7 +65,7 @@ a{color:inherit}
   font-weight:700;
   line-height:1.04;
   letter-spacing:-.03em;
-  color:var(--blue)
+  color:var(--ink)
 }
 .hero-copy h1{font-size:clamp(2.5rem,5vw,4.8rem)}
 .section h1{font-size:clamp(2.2rem,4vw,3.8rem)}
