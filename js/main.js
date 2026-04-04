@@ -137,7 +137,11 @@ function handleRegistrationForm() {
         setUser(payload);
         showMessage('Registro exitoso. Redirigiendo...', 'success');
         setTimeout(() => {
-          window.location.href = next;
+          if (next.includes('videos.html')) {
+            window.location.href = 'suscribite.html?next=' + encodeURIComponent(next);
+          } else {
+            window.location.href = next;
+          }
         }, 1100);
       })();
     } catch (e) {

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoopchAIn | ¡Gracias por registrarte!</title>
+  <link rel="stylesheet" href="css/styles.css?v=4" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>
+          <strong class="brand-word">Coopch<span class="brand-ai">AI</span>n</strong>
+          <span class="brand-sub">Blockchain + Cooperativismo + IA</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow center">
+        <div class="suscribite-card">
+          <div class="suscribite-icon">🎉</div>
+          <h1>¡Registro exitoso!</h1>
+          <p class="lead">Ya tenés acceso a todos los videos y al asistente CoopchAIn GPT.</p>
+          <div class="suscribite-divider"></div>
+          <p class="suscribite-invite">Antes de continuar, suscribite al canal para recibir los nuevos videos apenas se publiquen:</p>
+          <a class="btn btn-primary suscribite-btn" href="https://www.youtube.com/@Coopchain_pro?sub_confirmation=1" target="_blank" rel="noopener">
+            ▶ Suscribirme al canal CoopchAIn
+          </a>
+          <div class="suscribite-skip">
+            <a id="continuar-link" href="videos.html">Continuar sin suscribirme →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="small"><strong>CoopchAIn</strong> · Plataforma editorial del libro y su ecosistema conversacional</div>
+    </div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const next = params.get('next') || 'videos.html';
+    document.getElementById('continuar-link').href = next;
+  </script>
+  <script src="js/main.js?v=4"></script>
+</body>
+</html>
