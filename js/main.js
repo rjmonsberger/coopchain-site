@@ -147,7 +147,8 @@ function handleRegistrationForm() {
             }
 
             // Login exitoso: guardar sesión y redirigir
-            setUser({ nombre: existingUser.nombre, apellido: existingUser.apellido, email: existingUser.email });
+            const nivelLogin = next.includes('dialogar-con-el-libro') ? 'dialogar' : 'videos';
+            setUser({ nombre: existingUser.nombre, apellido: existingUser.apellido, email: existingUser.email, nivel: nivelLogin });
             showMessage(`Bienvenido de nuevo, ${existingUser.nombre}. Redirigiendo...`, 'success');
             setTimeout(() => { window.location.href = next; }, 1100);
             return;
@@ -157,7 +158,8 @@ function handleRegistrationForm() {
         }
 
         // success: optionally set session-like UI, then redirect
-        setUser(payload);
+        const nivelRegistro = next.includes('dialogar-con-el-libro') ? 'dialogar' : 'videos';
+        setUser({ ...payload, nivel: nivelRegistro });
         showMessage('Registro exitoso. Redirigiendo...', 'success');
         setTimeout(() => {
           if (next.includes('videos.html')) {
