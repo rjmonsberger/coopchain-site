@@ -402,3 +402,9 @@ body{padding-bottom:72px;}
   text-decoration:none;
 }
 .suscribite-skip a:hover{color:var(--green);} 
+
+.registro-intro{
+  font-size:1.15rem;
+  color:#ffffff;
+  line-height:1.75;
+}
