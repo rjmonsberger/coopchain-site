@@ -76,10 +76,10 @@ function handleRegistrationForm() {
   const tituloEl = document.getElementById('registro-titulo');
   const subtituloEl = document.getElementById('registro-subtitulo');
   if (next.includes('dialogar-con-el-libro')) {
-    if (tituloEl) tituloEl.textContent = 'Registro — Dialogar con el libro';
+    if (tituloEl) tituloEl.innerHTML = 'Registro<br>Dialogar con el libro';
     if (subtituloEl) subtituloEl.textContent = 'Este registro habilita el acceso al Asistente CoopchAIn-GPT.';
   } else if (next.includes('videos')) {
-    if (tituloEl) tituloEl.textContent = 'Registro — Sección Videos';
+    if (tituloEl) tituloEl.innerHTML = 'Registro<br>Sección Videos';
     if (subtituloEl) subtituloEl.textContent = 'Este registro habilita el acceso a los video resúmenes de cada capítulo.';
   }
 
