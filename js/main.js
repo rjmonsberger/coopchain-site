@@ -72,6 +72,17 @@ function handleRegistrationForm() {
   const form = document.querySelector("#registration-form");
   if (!form) return;
   const next = new URLSearchParams(location.search).get("next") || "dialogar-con-el-libro.html";
+
+  const tituloEl = document.getElementById('registro-titulo');
+  const subtituloEl = document.getElementById('registro-subtitulo');
+  if (next.includes('dialogar-con-el-libro')) {
+    if (tituloEl) tituloEl.textContent = 'Registro — Dialogar con el libro';
+    if (subtituloEl) subtituloEl.textContent = 'Este registro habilita el acceso al Asistente CoopchAIn-GPT.';
+  } else if (next.includes('videos')) {
+    if (tituloEl) tituloEl.textContent = 'Registro — Sección Videos';
+    if (subtituloEl) subtituloEl.textContent = 'Este registro habilita el acceso a los video resúmenes de cada capítulo.';
+  }
+
   const requiereCodigo = next.includes('dialogar-con-el-libro');
   if (requiereCodigo) {
     const campoCodigo = document.getElementById('campo-codigo');
