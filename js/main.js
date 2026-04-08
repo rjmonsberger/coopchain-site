@@ -64,7 +64,6 @@ function guardProtectedPages() {
   const user = getUser();
   const current = window.location.pathname.split("/").pop() || "index.html";
   const esDialogar = current.includes('dialogar-con-el-libro');
-
   if (!user) {
     window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
     return;
@@ -73,6 +72,16 @@ function guardProtectedPages() {
   if (esDialogar && user.nivel !== 'dialogar') {
     window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
     return;
+  }
+
+  const esVideos = current.includes('videos');
+
+  if (esVideos) {
+    const yaVioSuscripcion = localStorage.getItem('coopchain_suscripcion') === 'true';
+    if (!yaVioSuscripcion) {
+      window.location.href = 'suscribite.html?next=' + encodeURIComponent(current);
+      return;
+    }
   }
 }
 
