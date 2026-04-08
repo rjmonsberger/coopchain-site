@@ -102,7 +102,10 @@ function handleRegistrationForm() {
     if (subtituloEl2) subtituloEl2.textContent = 'Ya estás registrado. Ingresá el código del libro para habilitar el acceso.';
     ['nombre','apellido','email','empresa','rol'].forEach(campo => {
       const el = document.getElementById(campo);
-      if (el) el.closest('.form-group').style.display = 'none';
+      if (el) {
+        el.removeAttribute('required');
+        el.closest('.form-group').style.display = 'none';
+      }
     });
     const campoCodigo = document.getElementById('campo-codigo');
     if (campoCodigo) campoCodigo.style.display = 'block';
