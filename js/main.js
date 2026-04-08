@@ -72,6 +72,11 @@ function handleRegistrationForm() {
   const form = document.querySelector("#registration-form");
   if (!form) return;
   const next = new URLSearchParams(location.search).get("next") || "dialogar-con-el-libro.html";
+  const requiereCodigo = next.includes('dialogar-con-el-libro');
+  if (requiereCodigo) {
+    const campoCodigo = document.getElementById('campo-codigo');
+    if (campoCodigo) campoCodigo.style.display = 'block';
+  }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -84,6 +89,13 @@ function handleRegistrationForm() {
       rol: (data.get("rol") || "").toString().trim(),
       createdAt: new Date().toISOString()
     };
+
+    const CODIGO_VALIDO = 'coopchAIn-24160120';
+    const codigoIngresado = (data.get('codigo') || '').toString().trim();
+    if (requiereCodigo && codigoIngresado !== CODIGO_VALIDO) {
+      showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro.', 'error');
+      return;
+    }
 
     if (!payload.nombre || !payload.apellido || !payload.email) {
       alert("Completa nombre, apellido y email");
