@@ -25,15 +25,19 @@
         <div class="suscribite-card">
           <div class="suscribite-icon">🎉</div>
           <h1>¡Registro exitoso!</h1>
-          <p class="lead">Ya tenés acceso a todos los videos y al asistente CoopchAIn GPT.</p>
+          <p class="lead">Ya tenés acceso a todos los videos de CoopchAIn.</p>
           <div class="suscribite-divider"></div>
-          <p class="suscribite-invite">Antes de continuar, suscribite al canal para recibir los nuevos videos apenas se publiquen:</p>
-          <a class="btn btn-primary suscribite-btn" href="https://www.youtube.com/@Coopchain_pro?sub_confirmation=1" target="_blank" rel="noopener">
+          <p class="suscribite-invite">Para acceder a los videos suscribite al canal y luego confirmá tu suscripción:</p>
+          <a class="btn btn-naranja suscribite-btn" id="btn-youtube" href="https://www.youtube.com/@Coopchain_pro?sub_confirmation=1" target="_blank" rel="noopener">
             ▶ Suscribirme al canal CoopchAIn
           </a>
-          <div class="suscribite-skip">
-            <a id="continuar-link" href="videos.html">Continuar sin suscribirme →</a>
-          </div>
+          <label class="suscribite-check-label">
+            <input type="checkbox" id="confirm-suscripcion" />
+            Confirmo que me suscribí al canal
+          </label>
+          <button class="btn btn-primary suscribite-btn" id="btn-continuar" disabled onclick="continuarAVideos()">
+            Continuar a los videos →
+          </button>
         </div>
       </div>
     </section>
@@ -48,7 +52,14 @@
   <script>
     const params = new URLSearchParams(location.search);
     const next = params.get('next') || 'videos.html';
-    document.getElementById('continuar-link').href = next;
+
+    document.getElementById('confirm-suscripcion').addEventListener('change', function() {
+      document.getElementById('btn-continuar').disabled = !this.checked;
+    });
+
+    function continuarAVideos() {
+      window.location.href = next;
+    }
   </script>
   <script src="js/main.js?v=4"></script>
 </body>
