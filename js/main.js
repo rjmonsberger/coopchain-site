@@ -203,7 +203,8 @@ function handleRegistrationForm() {
         setUser({ ...payload, nivel: nivelRegistro });
         showMessage('Registro exitoso. Redirigiendo...', 'success');
         setTimeout(() => {
-          if (next.includes('videos.html')) {
+          const yaVioSuscripcion = localStorage.getItem('coopchain_suscripcion') === 'true';
+          if (!yaVioSuscripcion) {
             window.location.href = 'suscribite.html?next=' + encodeURIComponent(next);
           } else {
             window.location.href = next;
