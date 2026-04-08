@@ -62,9 +62,17 @@ function guardProtectedPages() {
   const protectedPage = document.body.dataset.protectedPage === "true";
   if (!protectedPage) return;
   const user = getUser();
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const esDialogar = current.includes('dialogar-con-el-libro');
+
   if (!user) {
-    const current = window.location.pathname.split("/").pop() || "dialogar-con-el-libro.html";
     window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
+    return;
+  }
+
+  if (esDialogar && user.nivel !== 'dialogar') {
+    window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
+    return;
   }
 }
 
