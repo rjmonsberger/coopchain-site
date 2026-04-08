@@ -203,8 +203,9 @@ function handleRegistrationForm() {
         setUser({ ...payload, nivel: nivelRegistro });
         showMessage('Registro exitoso. Redirigiendo...', 'success');
         setTimeout(() => {
+          const nivelActual = next.includes('dialogar-con-el-libro') ? 'dialogar' : 'videos';
           const yaVioSuscripcion = localStorage.getItem('coopchain_suscripcion') === 'true';
-          if (!yaVioSuscripcion) {
+          if (nivelActual === 'videos' && !yaVioSuscripcion) {
             window.location.href = 'suscribite.html?next=' + encodeURIComponent(next);
           } else {
             window.location.href = next;
