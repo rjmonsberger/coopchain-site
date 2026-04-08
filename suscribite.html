@@ -53,6 +53,17 @@
     const params = new URLSearchParams(location.search);
     const next = params.get('next') || 'videos.html';
 
+    // Ocultar checkbox y botón continuar hasta que se haga clic en YouTube
+    document.querySelector('.suscribite-check-label').style.display = 'none';
+    document.getElementById('btn-continuar').style.display = 'none';
+
+    document.getElementById('btn-youtube').addEventListener('click', function() {
+      setTimeout(() => {
+        document.querySelector('.suscribite-check-label').style.display = 'flex';
+        document.getElementById('btn-continuar').style.display = 'block';
+      }, 1500);
+    });
+
     document.getElementById('confirm-suscripcion').addEventListener('change', function() {
       document.getElementById('btn-continuar').disabled = !this.checked;
     });
