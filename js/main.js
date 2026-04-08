@@ -26,7 +26,7 @@ function showMessage(text, type) {
   el.className = 'helper';
   if (type === 'error') el.style.color = '#a00';
   if (type === 'success') el.style.color = '#0a7';
-  el.textContent = text;
+  el.innerHTML = text;
   container.appendChild(el);
 }
 
@@ -115,7 +115,7 @@ function handleRegistrationForm() {
       const d = new FormData(form);
       const codigoIngresado = (d.get('codigo') || '').toString().trim();
       if (codigoIngresado !== 'coopchAIn-24160120') {
-        showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro.', 'error');
+        showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro. Si no tenés el libro, podés adquirirlo en <a href="https://amazon.com" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;">Amazon</a>.', 'error');
         return;
       }
       setUser({ ...userActual, nivel: 'dialogar' });
@@ -145,7 +145,7 @@ function handleRegistrationForm() {
     const CODIGO_VALIDO = 'coopchAIn-24160120';
     const codigoIngresado = (data.get('codigo') || '').toString().trim();
     if (requiereCodigo && codigoIngresado !== CODIGO_VALIDO) {
-      showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro.', 'error');
+      showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro. Si no tenés el libro, podés adquirirlo en <a href="https://amazon.com" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;">Amazon</a>.', 'error');
       return;
     }
 
