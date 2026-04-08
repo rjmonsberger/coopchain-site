@@ -92,6 +92,36 @@ function handleRegistrationForm() {
   }
 
   const requiereCodigo = next.includes('dialogar-con-el-libro');
+  const userActual = getUser();
+
+  if (requiereCodigo && userActual && userActual.nivel === 'videos') {
+    // Usuario ya registrado en videos — solo pedir código, ocultar campos personales
+    const tituloEl2 = document.getElementById('registro-titulo');
+    const subtituloEl2 = document.getElementById('registro-subtitulo');
+    if (tituloEl2) tituloEl2.innerHTML = 'Acceso<br>Dialogar con el libro';
+    if (subtituloEl2) subtituloEl2.textContent = 'Ya estás registrado. Ingresá el código del libro para habilitar el acceso.';
+    ['nombre','apellido','email','empresa','rol'].forEach(campo => {
+      const el = document.getElementById(campo);
+      if (el) el.closest('.form-group').style.display = 'none';
+    });
+    const campoCodigo = document.getElementById('campo-codigo');
+    if (campoCodigo) campoCodigo.style.display = 'block';
+
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const d = new FormData(form);
+      const codigoIngresado = (d.get('codigo') || '').toString().trim();
+      if (codigoIngresado !== 'coopchAIn-24160120') {
+        showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro.', 'error');
+        return;
+      }
+      setUser({ ...userActual, nivel: 'dialogar' });
+      showMessage('Acceso habilitado. Redirigiendo...', 'success');
+      setTimeout(() => { window.location.href = next; }, 1100);
+    });
+    return;
+  }
+
   if (requiereCodigo) {
     const campoCodigo = document.getElementById('campo-codigo');
     if (campoCodigo) campoCodigo.style.display = 'block';
