@@ -124,7 +124,7 @@ function handleRegistrationForm() {
       ev.preventDefault();
       const d = new FormData(form);
       const codigoIngresado = (d.get('codigo') || '').toString().trim();
-      if (codigoIngresado !== 'coopchAIn-24160120') {
+      if (codigoIngresado !== 'coopchAIn-1624') {
         showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro. Si no tenés el libro, podés adquirirlo en <a href="https://amazon.com" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;">Amazon</a>.', 'error');
         return;
       }
@@ -152,7 +152,7 @@ function handleRegistrationForm() {
       createdAt: new Date().toISOString()
     };
 
-    const CODIGO_VALIDO = 'coopchAIn-24160120';
+    const CODIGO_VALIDO = 'coopchAIn-1624';
     const codigoIngresado = (data.get('codigo') || '').toString().trim();
     if (requiereCodigo && codigoIngresado !== CODIGO_VALIDO) {
       showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro. Si no tenés el libro, podés adquirirlo en <a href="https://amazon.com" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;">Amazon</a>.', 'error');
