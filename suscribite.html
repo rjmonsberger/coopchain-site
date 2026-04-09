@@ -69,7 +69,14 @@
     });
 
     function continuarAVideos() {
-      localStorage.setItem('coopchain_suscripcion', 'true');
+      const STORAGE_KEY = "coopchain_user_v2";
+      try {
+        const user = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (user) {
+          user.suscripto = true;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+        }
+      } catch(e) {}
       window.location.href = next;
     }
   </script>

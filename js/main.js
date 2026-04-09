@@ -77,7 +77,8 @@ function guardProtectedPages() {
   const esVideos = current.includes('videos');
 
   if (esVideos) {
-    const yaVioSuscripcion = localStorage.getItem('coopchain_suscripcion') === 'true';
+    const user = getUser();
+    const yaVioSuscripcion = user && user.suscripto === true;
     if (!yaVioSuscripcion) {
       window.location.href = 'suscribite.html?next=' + encodeURIComponent(current);
       return;
