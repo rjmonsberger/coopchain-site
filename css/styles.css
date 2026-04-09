@@ -416,9 +416,10 @@ body{padding-bottom:72px;}
   color: #ffffff;
   border: none;
   font-weight: 700;
-  padding: 18px 36px;
-  font-size: 1.05rem;
+  padding: 14px 28px;
+  font-size: 1rem;
   letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 .btn-naranja:hover {
   background: #d4893f;
@@ -433,6 +434,20 @@ body{padding-bottom:72px;}
   padding: 10px 14px;
   font-size: 1rem;
   font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .btn-naranja {
+    padding: 12px 20px;
+    font-size: .92rem;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Reglas para la confirmación de suscripción */
