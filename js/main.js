@@ -178,9 +178,9 @@ function handleRegistrationForm() {
       const supa = createClient(SUPABASE_URL, SUPABASE_KEY);
 
       (async () => {
-        const { data, error } = await supa
-          .from('Registros')
-          .insert([{ nombre: payload.nombre, apellido: payload.apellido, email: payload.email, empresa: payload.empresa, cargo: payload.rol }]);
+          const { data, error } = await supa
+            .from('Registros')
+            .insert([{ nombre: payload.nombre, apellido: payload.apellido, email: payload.email, empresa: payload.empresa, cargo: payload.rol, evento: next.includes('dialogar-con-el-libro') ? 'dialogar_con_el_libro' : 'seccion_videos' }]);
 
         if (error) {
           // Postgres unique_violation code is 23505
