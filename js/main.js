@@ -169,7 +169,7 @@ function handleRegistrationForm() {
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
 
     if (!SUPABASE_URL || !SUPABASE_KEY || !window.supabase) {
-      console.error('Supabase error:', error || e || null);
+      console.error('Supabase error message:', (typeof error !== 'undefined' ? error?.message : (typeof e !== 'undefined' ? e?.message : null)), 'details:', (typeof error !== 'undefined' ? error?.details : (typeof e !== 'undefined' ? e?.details : null)), 'hint:', (typeof error !== 'undefined' ? error?.hint : (typeof e !== 'undefined' ? e?.hint : null)), 'code:', (typeof error !== 'undefined' ? error?.code : (typeof e !== 'undefined' ? e?.code : null)));
       showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
       return;
     }
@@ -205,7 +205,7 @@ function handleRegistrationForm() {
             setTimeout(() => { window.location.href = next; }, 1100);
             return;
           }
-          console.error('Supabase error:', error || e || null);
+          console.error('Supabase error message:', (typeof error !== 'undefined' ? error?.message : (typeof e !== 'undefined' ? e?.message : null)), 'details:', (typeof error !== 'undefined' ? error?.details : (typeof e !== 'undefined' ? e?.details : null)), 'hint:', (typeof error !== 'undefined' ? error?.hint : (typeof e !== 'undefined' ? e?.hint : null)), 'code:', (typeof error !== 'undefined' ? error?.code : (typeof e !== 'undefined' ? e?.code : null)));
           showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
           return;
         }
@@ -225,7 +225,7 @@ function handleRegistrationForm() {
         }, 1100);
       })();
     } catch (e) {
-      console.error('Supabase error:', error || e || null);
+      console.error('Supabase error message:', (typeof error !== 'undefined' ? error?.message : (typeof e !== 'undefined' ? e?.message : null)), 'details:', (typeof error !== 'undefined' ? error?.details : (typeof e !== 'undefined' ? e?.details : null)), 'hint:', (typeof error !== 'undefined' ? error?.hint : (typeof e !== 'undefined' ? e?.hint : null)), 'code:', (typeof error !== 'undefined' ? error?.code : (typeof e !== 'undefined' ? e?.code : null)));
       showMessage('Ocurrió un error. Intentá de nuevo.', 'error');
     }
   });
