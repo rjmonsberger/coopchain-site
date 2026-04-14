@@ -120,13 +120,24 @@ function handleRegistrationForm() {
     const campoCodigo = document.getElementById('campo-codigo');
     if (campoCodigo) campoCodigo.style.display = 'block';
 
-    form.addEventListener("submit", (ev) => {
+    form.addEventListener("submit", async (ev) => {
       ev.preventDefault();
       const d = new FormData(form);
       const codigoIngresado = (d.get('codigo') || '').toString().trim();
       if (codigoIngresado !== 'coopchAIn-1624') {
         showMessage('Código de acceso incorrecto. Encontrás el código en la sección "Dialogar con el libro" del libro. Si no tenés el libro, podés adquirirlo en <a href="https://amazon.com" target="_blank" rel="noopener" style="color:#cc0000;font-weight:700;">Amazon</a>.', 'error');
         return;
+      }
+      const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
+      const supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      try {
+        await supaClient
+          .from('Registros')
+          .update({ evento: 'ambas' })
+          .eq('email', userActual.email);
+      } catch (updateErr) {
+        console.error('Error updating evento to ambas:', updateErr);
       }
       setUser({ ...userActual, nivel: 'dialogar' });
       showMessage('Acceso habilitado. Redirigiendo...', 'success');
