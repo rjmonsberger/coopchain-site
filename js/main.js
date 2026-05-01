@@ -131,14 +131,14 @@ function handleRegistrationForm() {
       const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
       const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
       const supaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      try {
-        await supaClient
+        const { error: updateError } = await supaClient
           .from('Registros')
           .update({ evento: 'ambas' })
           .eq('email', userActual.email);
-      } catch (updateErr) {
-        console.error('Error updating evento to ambas:', updateErr);
-      }
+
+        if (updateError) {
+          console.error('Error al actualizar evento a ambas:', updateError.message);
+        }
       setUser({ ...userActual, nivel: 'dialogar' });
       showMessage('Acceso habilitado. Redirigiendo...', 'success');
       setTimeout(() => { window.location.href = next; }, 1100);
