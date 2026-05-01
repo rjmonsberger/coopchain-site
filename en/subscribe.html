@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoopchAIn | Thank you for registering!</title>
+  <link rel="stylesheet" href="../css/styles.css?v=4" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>
+          <strong class="brand-word">Coopch<span class="brand-ai">AI</span>n</strong>
+          <span class="brand-sub">Blockchain + Cooperativism + AI</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow center">
+        <div class="suscribite-card">
+          <div class="suscribite-icon">🎉</div>
+          <h1>Registration successful!</h1>
+          <p class="lead">You now have access to all CoopchAIn videos.</p>
+          <div class="suscribite-divider"></div>
+          <p class="suscribite-invite">To access the videos, subscribe to the channel and then confirm your subscription:</p>
+          <a class="btn btn-naranja suscribite-btn" id="btn-youtube" href="https://www.youtube.com/@Coopchain_pro" target="_blank" rel="noopener">
+            ▶ Subscribe to the CoopchAIn channel
+          </a>
+          <label class="suscribite-check-label">
+            <input type="checkbox" id="confirm-suscripcion" />
+            I confirm that I have subscribed to the channel
+          </label>
+          <button class="btn btn-primary suscribite-btn" id="btn-continuar" disabled onclick="continuarAVideos()">
+            Continue to videos →
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="small"><strong>CoopchAIn</strong> · Editorial platform for the book and its conversational ecosystem</div>
+    </div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const next = params.get('next') || 'videos.html';
+
+    document.querySelector('.suscribite-check-label').style.display = 'none';
+    document.getElementById('btn-continuar').style.display = 'none';
+
+    document.getElementById('btn-youtube').addEventListener('click', function() {
+      setTimeout(() => {
+        document.querySelector('.suscribite-check-label').style.display = 'flex';
+        document.getElementById('btn-continuar').style.display = 'block';
+      }, 1500);
+    });
+
+    document.getElementById('confirm-suscripcion').addEventListener('change', function() {
+      document.getElementById('btn-continuar').disabled = !this.checked;
+    });
+
+    function continuarAVideos() {
+      const STORAGE_KEY = "coopchain_user_v2";
+      try {
+        const user = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (user) {
+          user.suscripto = true;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+        }
+      } catch(e) {}
+      window.location.href = next;
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/main.js?v=4"></script>
+</body>
+</html>

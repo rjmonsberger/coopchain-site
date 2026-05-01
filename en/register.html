@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoopchAIn | Register</title>
+  <meta name="description" content="Single registration to access Talk to the Book and Videos" />
+  <link rel="stylesheet" href="../css/styles.css?v=4" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>
+          <strong class="brand-word">Coopch<span class="brand-ai">AI</span>n</strong>
+          <span class="brand-sub">Blockchain + Cooperativism + AI</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="talk-to-the-book.html">Talk to the Book</a>
+        <a href="videos.html">Videos</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-head center">
+          <h1 id="registro-titulo">Register</h1>
+          <p class="registro-intro" id="registro-subtitulo">This registration enables access to both Talk to the Book and Videos.</p>
+        </div>
+
+        <form class="form-shell" id="registration-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nombre">First name</label>
+              <input id="nombre" name="nombre" type="text" required />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Last name</label>
+              <input id="apellido" name="apellido" type="text" required />
+            </div>
+            <div class="form-group full">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+            <div class="form-group">
+              <label for="empresa">Organization</label>
+              <input id="empresa" name="empresa" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="rol">Role / Position</label>
+              <input id="rol" name="rol" type="text" />
+            </div>
+            <div class="form-group full" id="campo-codigo" style="display:none;">
+              <label for="codigo">Access code <span style="color:var(--copper)">*</span></label>
+              <input id="codigo" name="codigo" type="text" placeholder="Enter the code found in the book" />
+              <p class="helper">You can find this code in the "Talk to the Book" section of the digital or physical edition.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Continue</button>
+            <a class="btn btn-outline" href="index.html">Back to home</a>
+          </div>
+        </form>
+
+        <div id="registro-messages" style="margin-top:12px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="small"><strong>CoopchAIn</strong> · Single registration for Talk to the Book and Videos</div>
+      <div class="small">First name, last name and email required · Organization and role optional</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/main.js?v=4"></script>
+</body>
+</html>
