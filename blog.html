@@ -18,6 +18,206 @@
         </span>
       </a>
       <nav class="nav" aria-label="Principal">
+        <a href="index.html">Inicio</a>
+        <a href="indice.html">Índice</a>
+        <a href="dialogar-con-el-libro.html">Dialogar con el libro</a>
+        <a href="videos.html">Videos</a>
+        <a class="active" href="blog.html">Blog</a>
+        <a href="index.html#autor">Autor</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switcher"><a class="lang-active" href="/index.html">🇪🇸 ES</a><span>|</span><a href="/en/index.html">🇺🇸 EN</a></div>
+        <a class="btn btn-ghost" data-user-only data-logout href="#">Salir</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container split split-hero">
+        <div class="hero-copy">
+          <h1>Ideas, notas y conversación pública</h1>
+          <p class="lead">Este espacio acompaña al libro con reflexiones, comentarios y futuras actualizaciones abiertas para lectores, aliados y curiosos del proyecto.</p>
+          <p>El blog está pensado como un terreno de intercambio: un lugar para traducir ideas complejas, comentar hallazgos y ampliar el ecosistema intelectual de CoopchAIn.</p>
+        </div>
+        <figure class="image-panel hero-figure">
+          <img src="images/Imagen blog.png" alt="Imagen del blog CoopchAIn" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container blog-list">
+        <article class="blog-post">
+          <div class="tag-row"><span class="tag">Gobernanza</span><span class="tag">Cooperación</span></div>
+          <h3>La calidad de los vínculos como problema institucional</h3>
+          <p>La pregunta del futuro no será solo qué tecnología usamos, sino qué tipo de vínculos, acuerdos y procesos sostienen la legitimidad de esa tecnología.</p>
+        </article>
+
+        <article class="blog-post">
+          <div class="tag-row"><span class="tag">Blockchain</span><span class="tag">Infraestructura</span></div>
+          <h3>Desbloquear blockchain más allá de la especulación</h3>
+          <p>Blockchain no importa solo como activo o plataforma financiera. Importa como arquitectura de confianza, memoria compartida y reglas verificables.</p>
+        </article>
+
+        <article class="blog-post">
+          <div class="tag-row"><span class="tag">IA</span><span class="tag">Post-singularidad</span></div>
+          <h3>Cuando la eficiencia deja de ser una ventaja humana</h3>
+          <p>Si la IA convierte la eficiencia en una propiedad del sistema, entonces la competencia entre instituciones se desplaza hacia la gobernanza, el propósito y la comunidad.</p>
+        </article>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <section class="section section-soft" id="foro">
+      <div class="container">
+        <div class="section-head">
+          <p class="overline">Comunidad</p>
+          <h2>Foro de intercambio</h2>
+          <p class="section-intro">Un espacio para lectores registrados. Compartí tu perspectiva, preguntá o debatí ideas del libro.</p>
+          <p class="helper">¿Querés contactar al autor directamente? <a class="text-link" href="https://www.linkedin.com/in/rodolfo-monsberger" target="_blank" rel="noopener">LinkedIn</a></p>
+        </div>
+        <div id="foro-preguntas" style="margin-top:32px;"></div>
+        <div id="foro-no-sesion" class="helper" style="margin-top:24px;display:none;">Para participar en el foro debés <a style="color:var(--copper);text-decoration:underline;" href="registro.html?next=blog.html">registrarte</a>.</div>
+        <div id="foro-admin-panel" style="display:none;margin-top:16px;">
+          <input id="foro-admin-pin" type="password" placeholder="PIN de administrador" style="padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:var(--ink);margin-right:8px;" />
+          <button class="btn btn-outline" onclick="verificarPinAdmin()">Activar modo admin</button>
+          <span id="foro-admin-ok" style="display:none;color:var(--green);margin-left:8px;">✓ Modo admin activo</span>
+        </div>
+      </div>
+    </section>
+
+    <script>
+(function() {
+  const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
+  const STORAGE_KEY = 'coopchain_user_v2';
+  const ADMIN_PIN = '581968';
+  const IDIOMA = 'es';
+
+  const preguntas = [
+    { id: 1, texto: '¿Creés que el cooperativismo puede sobrevivir —y prosperar— en un mundo dominado por la inteligencia artificial? ¿Por qué sí o por qué no?' },
+    { id: 2, texto: 'Si la eficiencia deja de ser una ventaja humana, ¿qué le queda al trabajo como fuente de sentido e identidad?' },
+    { id: 3, texto: '¿Qué institución —cooperativa, empresa, Estado— está mejor posicionada para liderar la transición post-singularidad? ¿Por qué?' },
+    { id: 4, texto: 'La singularidad sociocultural reordena las bases sobre las que construimos identidad, pertenencia y sentido colectivo. ¿Qué estamos perdiendo en esa transición y qué podríamos ganar?' }
+  ];
+
+  let adminActivo = false;
+  let supa = null;
+
+  function getUser() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; }
+  }
+
+  window.verificarPinAdmin = function() {
+    const pin = document.getElementById('foro-admin-pin').value;
+    if (pin === ADMIN_PIN) {
+      adminActivo = true;
+      document.getElementById('foro-admin-ok').style.display = 'inline';
+      cargarForo();
+    } else {
+      alert('PIN incorrecto');
+    }
+  };
+
+  async function borrarPost(id) {
+    if (!adminActivo) return;
+    if (!confirm('¿Borrar este mensaje?')) return;
+    await supa.from('Foro').delete().eq('id', id);
+    cargarForo();
+  }
+
+  async function cargarForo() {
+    if (!supa) return;
+    const container = document.getElementById('foro-preguntas');
+    container.innerHTML = '';
+    const { data: posts } = await supa.from('Foro').select('*').eq('idioma', IDIOMA).order('created_at', { ascending: true });
+    preguntas.forEach(function(p) {
+      const postsDePregunta = (posts || []).filter(function(x) { return x.pregunta_id === p.id; });
+      const user = getUser();
+      const div = document.createElement('div');
+      div.className = 'faq';
+      div.style.marginBottom = '24px';
+      div.innerHTML = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--green)'>" + p.texto + '</h3>' +
+        '<div style="display:flex;flex-direction:column;gap:10px;">' +
+        postsDePregunta.map(function(post) {
+          return '<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:12px 16px;">' +
+            '<div style="font-size:.8rem;color:var(--muted);margin-bottom:4px;">' + post.autor_nombre + ' · ' + new Date(post.created_at).toLocaleDateString('es-AR') + '</div>' +
+            '<div>' + post.contenido + '</div>' +
+            (adminActivo ? '<button class="btn btn-outline" style="margin-top:8px;font-size:.75rem;padding:4px 10px;" onclick="borrarPost(\'' + post.id + '\')">Borrar</button>' : '') +
+            '</div>';
+        }).join('') +
+        '</div>' +
+        (user ? '<div style="margin-top:12px;display:flex;gap:8px;">' +
+          '<textarea id="foro-texto-' + p.id + '" rows="2" placeholder="Escribí tu respuesta..." style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:var(--ink);resize:vertical;"></textarea>' +
+          '<button class="btn btn-naranja" style="align-self:flex-end;" onclick="enviarPost(' + p.id + ')">Enviar</button>' +
+          '</div>' : '');
+      container.appendChild(div);
+    });
+  }
+
+  window.enviarPost = async function(preguntaId) {
+    const user = getUser();
+    if (!user) return;
+    const textarea = document.getElementById('foro-texto-' + preguntaId);
+    const contenido = textarea.value.trim();
+    if (!contenido) return;
+    await supa.from('Foro').insert([{
+      autor_nombre: user.nombre + ' ' + (user.apellido || ''),
+      autor_email: user.email,
+      pregunta_id: preguntaId,
+      contenido: contenido,
+      idioma: IDIOMA
+    }]);
+    textarea.value = '';
+    cargarForo();
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const user = getUser();
+    if (!user) {
+      document.getElementById('foro-no-sesion').style.display = 'block';
+    } else {
+      document.getElementById('foro-admin-panel').style.display = 'block';
+    }
+    supa = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    cargarForo();
+  });
+})();
+</script>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div class="small"><strong>CoopchAIn</strong> · Blog público del proyecto</div>
+      <div class="small">Nuevos artículos y comentarios podrán añadirse en iteraciones futuras</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=4"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoopchAIn | Blog</title>
+  <meta name="description" content="Ideas, notas y conversación pública alrededor del universo CoopchAIn" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>
+          <strong class="brand-word">Coopch<span class="brand-ai">AI</span>n</strong>
+          <span class="brand-sub">Blockchain + Cooperativismo + IA</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Principal">
 <!DOCTYPE html>
 <html lang="es">
 <head>
