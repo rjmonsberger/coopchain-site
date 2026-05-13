@@ -194,10 +194,14 @@
   <script src="js/main.js?v=4"></script>
 
   <nav class="nav-bottom" aria-label="Navegación principal">
-    <a class="nav-bottom-item" href="https://amazon.com" target="_blank" rel="noopener">
+    <div class="nav-bottom-item nav-bottom-dropdown" onclick="this.classList.toggle('open');event.stopPropagation()">
       <span class="nav-bottom-icon">📖</span>
       <span>Leer</span>
-    </a>
+      <div class="nav-bottom-dropdown-menu">
+        <a href="https://www.amazon.com/dp/B0GXRHF618" target="_blank" rel="noopener">📱 eBook Kindle</a>
+        <a href="https://www.amazon.com/dp/B0GZSXDR5V" target="_blank" rel="noopener">📖 Tapa blanda</a>
+      </div>
+    </div>
     <a class="nav-bottom-item" data-requires-auth href="dialogar-con-el-libro.html">
       <span class="nav-bottom-icon">💬</span>
       <span>Dialogar</span>

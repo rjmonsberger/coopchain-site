@@ -195,10 +195,14 @@
     <script src="js/main.js?v=4"></script>
 
   <nav class="nav-bottom" aria-label="Main navigation">
-    <a class="nav-bottom-item" href="https://amazon.com" target="_blank" rel="noopener">
+    <div class="nav-bottom-item nav-bottom-dropdown" onclick="this.classList.toggle('open');event.stopPropagation()">
       <span class="nav-bottom-icon">📖</span>
       <span>Read</span>
-    </a>
+      <div class="nav-bottom-dropdown-menu">
+        <a href="https://www.amazon.com/dp/B0GXY7PLV8" target="_blank" rel="noopener">📱 eBook Kindle</a>
+        <a href="https://www.amazon.com/dp/B0GZSVQ74M" target="_blank" rel="noopener">📖 Paperback</a>
+      </div>
+    </div>
     <a class="nav-bottom-item" data-requires-auth href="talk-to-the-book.html">
       <span class="nav-bottom-icon">💬</span>
       <span>Talk</span>
