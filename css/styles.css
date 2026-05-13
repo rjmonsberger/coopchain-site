@@ -498,3 +498,8 @@ body{padding-bottom:72px;}
 .nav-bottom-dropdown-menu a:last-child{border-bottom:none;}
 .nav-bottom-dropdown-menu a:hover{background:rgba(255,255,255,.08);}
 .nav-bottom-dropdown.open .nav-bottom-dropdown-menu{display:block;}
+.foro-pregunta-texto{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:12px;}
+#foro-preguntas .faq{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 20px;margin-bottom:16px;}
+#foro-preguntas h3{font-size:1rem;font-weight:600;color:var(--ink);}
+#foro-no-sesion a.text-link{color:var(--copper) !important;text-decoration:underline;}
+#foro-no-sesion{font-size:1rem;color:var(--ink);}
