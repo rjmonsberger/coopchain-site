@@ -58,7 +58,7 @@ function refreshAuthUI() {
   });
 }
 
-function guardProtectedPages() {
+async function guardProtectedPages() {
   const protectedPage = document.body.dataset.protectedPage === "true";
   if (!protectedPage) return;
   const user = getUser();
@@ -68,14 +68,26 @@ function guardProtectedPages() {
     window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
     return;
   }
-
   if (esDialogar && user.nivel !== 'dialogar') {
     window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
     return;
   }
-
+  if (esDialogar && user.email) {
+    try {
+      const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
+      const supa = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const { data, error } = await supa.rpc('verificar_acceso_dialogar', { p_email: user.email });
+      if (error || !data) {
+        window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
+        return;
+      }
+    } catch (e) {
+      window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
+      return;
+    }
+  }
   const esVideos = current.includes('videos');
-
   if (esVideos) {
     const user = getUser();
     const yaVioSuscripcion = user && user.suscripto === true;
