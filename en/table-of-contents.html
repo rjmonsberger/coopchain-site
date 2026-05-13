@@ -81,7 +81,13 @@
 
         <div class="section-head center" style="margin-top:48px;">
           <p class="helper">The book also includes 5 technical appendices with use cases, bibliography, glossary and notes. The complete table of contents is available in the print and digital editions.</p>
-          <a class="btn btn-primary" href="https://amazon.com" target="_blank" rel="noopener" style="margin-top:16px;">Get the book →</a>
+          <div class="book-dropdown" style="margin-top:16px;">
+  <button class="btn btn-primary book-dropdown-btn" onclick="this.closest('.book-dropdown').classList.toggle('open')">Get the book ▾</button>
+  <div class="book-dropdown-menu">
+    <a href="https://www.amazon.com/dp/B0GXY7PLV8" target="_blank" rel="noopener">📱 eBook Kindle</a>
+    <a href="https://www.amazon.com/dp/B0GZSVQ74M" target="_blank" rel="noopener">📖 Paperback</a>
+  </div>
+</div>
         </div>
       </div>
     </section>
@@ -95,5 +101,13 @@
   </footer>
 
   <script src="../js/main.js?v=4"></script>
+
+<script>
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.book-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>

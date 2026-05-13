@@ -81,7 +81,13 @@
 
         <div class="section-head center" style="margin-top:48px;">
           <p class="helper">El libro incluye además 5 apéndices técnicos con casos de uso, bibliografía, glosario y notas. El índice completo está disponible en la edición impresa y digital.</p>
-          <a class="btn btn-primary" href="https://amazon.com" target="_blank" rel="noopener" style="margin-top:16px;">Adquirir el libro →</a>
+          <div class="book-dropdown" style="margin-top:16px;">
+  <button class="btn btn-primary book-dropdown-btn" onclick="this.closest('.book-dropdown').classList.toggle('open')">Adquirir el libro ▾</button>
+  <div class="book-dropdown-menu">
+    <a href="https://www.amazon.com/dp/B0GXRHF618" target="_blank" rel="noopener">📱 eBook Kindle</a>
+    <a href="https://www.amazon.com/dp/B0GZSXDR5V" target="_blank" rel="noopener">📖 Tapa blanda</a>
+  </div>
+</div>
         </div>
       </div>
     </section>
@@ -95,5 +101,14 @@
   </footer>
 
   <script src="js/main.js?v=4"></script>
+
+<script>
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.book-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>
+

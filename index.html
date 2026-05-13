@@ -139,7 +139,13 @@
             <div class="camino-num">01</div>
             <h3>Leer</h3>
             <p>Explorá la tesis central: cómo la IA, blockchain y el cooperativismo convergen en una nueva arquitectura institucional para la era post-singularidad.</p>
-            <a class="btn btn-primary camino-btn" href="https://amazon.com" target="_blank" rel="noopener">Adquirir el libro →</a>
+            <div class="book-dropdown">
+  <button class="btn btn-primary camino-btn book-dropdown-btn" onclick="this.closest('.book-dropdown').classList.toggle('open')">Adquirir el libro ▾</button>
+  <div class="book-dropdown-menu">
+    <a href="https://www.amazon.com/dp/B0GXRHF618" target="_blank" rel="noopener">📱 eBook Kindle</a>
+    <a href="https://www.amazon.com/dp/B0GZSXDR5V" target="_blank" rel="noopener">📖 Tapa blanda</a>
+  </div>
+</div>
           </article>
           <article class="camino-card camino-card--featured">
             <div class="camino-icon">💬</div>
@@ -201,5 +207,14 @@
       <span>Ver</span>
     </a>
   </nav>
+</nav>
+
+<script>
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.book-dropdown.open').forEach(function(d) {
+    if (!d.contains(e.target)) d.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>
