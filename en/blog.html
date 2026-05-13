@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -26,7 +26,7 @@
         <a href="index.html#author">Author</a>
       </nav>
       <div class="header-actions">
-        <div class="lang-switcher"><a href="/index.html">🇪🇸 ES</a><span>|</span><a class="lang-active" href="/en/index.html">🇺🇸 EN</a></div>
+        <div class="lang-switcher"><a href="/index.html">ðŸ‡ªðŸ‡¸ ES</a><span>|</span><a class="lang-active" href="/en/index.html">ðŸ‡ºðŸ‡¸ EN</a></div>
         <a class="btn btn-ghost hidden" data-user-only data-logout href="#">Log out</a>
       </div>
     </div>
@@ -87,7 +87,7 @@
         <div id="foro-admin-panel" style="display:none;margin-top:16px;">
           <input id="foro-admin-pin" type="password" placeholder="Admin PIN" style="padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:var(--ink);margin-right:8px;" />
           <button class="btn btn-outline" onclick="verificarPinAdmin()">Activate admin mode</button>
-          <span id="foro-admin-ok" style="display:none;color:var(--green);margin-left:8px;">✓ Admin mode active</span>
+          <span id="foro-admin-ok" style="display:none;color:var(--green);margin-left:8px;">âœ“ Admin mode active</span>
         </div>
       </div>
     </section>
@@ -97,13 +97,12 @@
   const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
   const STORAGE_KEY = 'coopchain_user_v2';
-  const ADMIN_PIN = '581968';
   const IDIOMA = 'en';
 
   const preguntas = [
-    { id: 1, texto: 'Do you believe cooperativism can survive —and thrive— in a world dominated by artificial intelligence? Why or why not?' },
+    { id: 1, texto: 'Do you believe cooperativism can survive â€”and thriveâ€” in a world dominated by artificial intelligence? Why or why not?' },
     { id: 2, texto: 'If efficiency ceases to be a human advantage, what is left of work as a source of meaning and identity?' },
-    { id: 3, texto: 'Which institution —cooperative, company, or state— is best positioned to lead the post-singularity transition? Why?' },
+    { id: 3, texto: 'Which institution â€”cooperative, company, or stateâ€” is best positioned to lead the post-singularity transition? Why?' },
     { id: 4, texto: 'The sociocultural singularity reorders the very foundations on which we build identity, belonging and collective meaning. What are we losing in that transition, and what might we gain?' }
   ];
 
@@ -114,9 +113,15 @@
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; }
   }
 
-  window.verificarPinAdmin = function() {
+  window.verificarPinAdmin = async function() {
     const pin = document.getElementById('foro-admin-pin').value;
-    if (pin === ADMIN_PIN) {
+    if (!pin) return;
+    const msgBuffer = new TextEncoder().encode(pin);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const { data, error } = await supa.from('Admins').select('id').eq('pin_hash', hashHex).maybeSingle();
+    if (data && !error) {
       adminActivo = true;
       document.getElementById('foro-admin-ok').style.display = 'inline';
       cargarForo();
@@ -147,7 +152,7 @@
         '<div style="display:flex;flex-direction:column;gap:10px;">' +
         postsDePregunta.map(function(post) {
           return '<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:12px 16px;">' +
-            '<div style="font-size:.8rem;color:var(--muted);margin-bottom:4px;">' + post.autor_nombre + ' · ' + new Date(post.created_at).toLocaleDateString('en-US') + '</div>' +
+            '<div style="font-size:.8rem;color:var(--muted);margin-bottom:4px;">' + post.autor_nombre + ' Â· ' + new Date(post.created_at).toLocaleDateString('en-US') + '</div>' +
             '<div>' + post.contenido + '</div>' +
             (adminActivo ? '<button class="btn btn-outline" style="margin-top:8px;font-size:.75rem;padding:4px 10px;" onclick="borrarPost(\'' + post.id + '\')">Delete</button>' : '') +
             '</div>';
@@ -194,7 +199,7 @@
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="small"><strong>CoopchAIn</strong> · Public blog of the project</div>
+      <div class="small"><strong>CoopchAIn</strong> Â· Public blog of the project</div>
       <div class="small">New articles and comments may be added in future iterations</div>
     </div>
   </footer>

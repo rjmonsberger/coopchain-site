@@ -97,7 +97,6 @@
   const SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
   const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
   const STORAGE_KEY = 'coopchain_user_v2';
-  const ADMIN_PIN = '581968';
   const IDIOMA = 'es';
 
   const preguntas = [
@@ -114,9 +113,15 @@
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch { return null; }
   }
 
-  window.verificarPinAdmin = function() {
+  window.verificarPinAdmin = async function() {
     const pin = document.getElementById('foro-admin-pin').value;
-    if (pin === ADMIN_PIN) {
+    if (!pin) return;
+    const msgBuffer = new TextEncoder().encode(pin);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const { data, error } = await supa.from('Admins').select('id').eq('pin_hash', hashHex).maybeSingle();
+    if (data && !error) {
       adminActivo = true;
       document.getElementById('foro-admin-ok').style.display = 'inline';
       cargarForo();
