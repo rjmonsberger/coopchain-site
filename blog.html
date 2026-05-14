@@ -139,7 +139,7 @@
     }
   };
 
-  async function borrarPost(id) {
+  window.borrarPost = async function(id) {
     if (!adminActivo) return;
     if (!confirm('Eliminar este mensaje?')) return;
     await supa.from('Foro').delete().eq('id', id);
