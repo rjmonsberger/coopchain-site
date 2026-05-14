@@ -141,10 +141,28 @@
 
   window.borrarPost = async function(id) {
     if (!adminActivo) return;
-    if (!confirm('Eliminar este mensaje?')) return;
-    await supa.from('Foro').delete().eq('id', id);
-    cargarForo();
-  }
+    if (!confirm('¿Eliminar este mensaje?')) return;
+    const pinInput = document.getElementById('foro-admin-pin');
+    const pin = pinInput ? pinInput.value : '';
+    const msgBuffer = new TextEncoder().encode(pin);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const pinHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const res = await fetch('https://xiuqpxburuqqvcpyiewj.supabase.co/functions/v1/borrar-post-admin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo'
+      },
+      body: JSON.stringify({ post_id: id, pin_hash: pinHash })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      cargarForo();
+    } else {
+      alert('Error al eliminar el mensaje');
+    }
+  };
 
   async function cargarForo() {
     if (!supa) return;
