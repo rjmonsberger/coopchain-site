@@ -52,6 +52,14 @@
   <script>
     const params = new URLSearchParams(location.search);
     const next = params.get('next') || 'videos.html';
+    const esBlog = next.includes('blog');
+
+    if (esBlog) {
+      document.querySelector('h1').textContent = '¡Registro exitoso!';
+      document.querySelector('.lead').textContent = 'Ya podés participar en el foro de CoopchAIn.';
+      document.querySelector('.suscribite-invite').textContent = 'Mientras tanto, suscribite al canal para no perderte ninguna novedad:';
+      document.getElementById('btn-continuar').textContent = 'Continuar al foro →';
+    }
 
     // Ocultar checkbox y botón continuar hasta que se haga clic en YouTube
     document.querySelector('.suscribite-check-label').style.display = 'none';
