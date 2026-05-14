@@ -181,13 +181,19 @@
     const textarea = document.getElementById('foro-texto-' + preguntaId);
     const contenido = textarea.value.trim();
     if (!contenido) return;
-    await supa.from('Foro').insert([{
+    const postData = {
       autor_nombre: user.nombre + ' ' + (user.apellido || ''),
       autor_email: user.email,
       pregunta_id: preguntaId,
       contenido: contenido,
       idioma: IDIOMA
-    }]);
+    };
+    await supa.from('Foro').insert([postData]);
+    fetch('https://xiuqpxburuqqvcpyiewj.supabase.co/functions/v1/notificar-nuevo-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(postData)
+    }).catch(function() {});
     textarea.value = '';
     cargarForo();
   };
