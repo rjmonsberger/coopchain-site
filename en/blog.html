@@ -160,15 +160,15 @@
       div.innerHTML = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--green)">' + p.texto + '</h3>' +
         '<div style="display:flex;flex-direction:column;gap:10px;">' +
         postsDePregunta.map(function(post) {
-          return '<div style="background:rgba(255,255,255,.04);border-radius:8px;padding:12px 16px;">' +
+          return '<div style="background:rgba(78,203,141,.15);border-radius:8px;padding:12px 16px;border:1px solid rgba(78,203,141,.3);">' +
             '<div style="font-size:.8rem;color:var(--muted);margin-bottom:4px;">' + sanitizar(post.autor_nombre) + ' Â· ' + new Date(post.created_at).toLocaleDateString('en-US') + '</div>' +
-            '<div>' + sanitizar(post.contenido) + '</div>' +
+            '<div style="color:var(--ink)">' + sanitizar(post.contenido) + '</div>' +
             (adminActivo ? '<button class="btn btn-outline" style="margin-top:8px;font-size:.75rem;padding:4px 10px;" onclick="borrarPost(\'' + post.id + '\')">Delete</button>' : '') +
             '</div>';
         }).join('') +
         '</div>' +
         (user ? '<div style="margin-top:12px;display:flex;gap:8px;">' +
-          '<textarea id="foro-texto-' + p.id + '" rows="2" placeholder="Write your response..." style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:var(--ink);resize:vertical;"></textarea>' +
+          '<textarea id="foro-texto-' + p.id + '" rows="2" placeholder="Write your response..." style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:#ffffff;color:#111111;resize:vertical;"></textarea>' +
           '<button class="btn btn-naranja" style="align-self:flex-end;" onclick="enviarPost(' + p.id + ')">Send</button>' +
           '</div>' : '');
       container.appendChild(div);
