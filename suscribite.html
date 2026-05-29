@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoopchAIn | ¡Gracias por registrarte!</title>
+  <title>CoopchAIn | Â¡Gracias por registrarte!</title>
   <link rel="stylesheet" href="css/styles.css?v=4" />
 </head>
 <body>
@@ -23,20 +23,20 @@
     <section class="section">
       <div class="container narrow center">
         <div class="suscribite-card">
-          <div class="suscribite-icon">🎉</div>
-          <h1>¡Registro exitoso!</h1>
-          <p class="lead">Ya tenés acceso a todos los videos de CoopchAIn.</p>
+          <div class="suscribite-icon">ðŸŽ‰</div>
+          <h1>Â¡Registro exitoso!</h1>
+          <p class="lead">Ya tenÃ©s acceso a todos los videos de CoopchAIn.</p>
           <div class="suscribite-divider"></div>
-          <p class="suscribite-invite">Para acceder a los videos suscribite al canal y luego confirmá tu suscripción:</p>
-          <a class="btn btn-naranja suscribite-btn" id="btn-youtube" href="https://www.youtube.com/@Coopchain_pro" target="_blank" rel="noopener">
-            ▶ Suscribirme al canal CoopchAIn
+          <p class="suscribite-invite">Para acceder a los videos suscribite al canal y luego confirmÃ¡ tu suscripciÃ³n:</p>
+          <a class="btn btn-naranja suscribite-btn" id="btn-youtube" href="https://www.youtube.com/@Coopchain_pro/playlists" target="_blank" rel="noopener">
+            â–¶ Suscribirme al canal CoopchAIn
           </a>
           <label class="suscribite-check-label">
             <input type="checkbox" id="confirm-suscripcion" />
-            Confirmo que me suscribí al canal
+            Confirmo que me suscribÃ­ al canal
           </label>
           <button class="btn btn-primary suscribite-btn" id="btn-continuar" disabled onclick="continuarAVideos()">
-            Continuar a los videos →
+            Continuar a los videos â†’
           </button>
         </div>
       </div>
@@ -45,7 +45,7 @@
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <div class="small"><strong>CoopchAIn</strong> · Plataforma editorial del libro y su ecosistema conversacional</div>
+      <div class="small"><strong>CoopchAIn</strong> Â· Plataforma editorial del libro y su ecosistema conversacional</div>
     </div>
   </footer>
 
@@ -55,13 +55,13 @@
     const esBlog = next.includes('blog');
 
     if (esBlog) {
-      document.querySelector('h1').textContent = '¡Registro exitoso!';
-      document.querySelector('.lead').textContent = 'Ya podés participar en el foro de CoopchAIn.';
+      document.querySelector('h1').textContent = 'Â¡Registro exitoso!';
+      document.querySelector('.lead').textContent = 'Ya podÃ©s participar en el foro de CoopchAIn.';
       document.querySelector('.suscribite-invite').textContent = 'Mientras tanto, suscribite al canal para no perderte ninguna novedad:';
-      document.getElementById('btn-continuar').textContent = 'Continuar al foro →';
+      document.getElementById('btn-continuar').textContent = 'Continuar al foro â†’';
     }
 
-    // Ocultar checkbox y botón continuar hasta que se haga clic en YouTube
+    // Ocultar checkbox y botÃ³n continuar hasta que se haga clic en YouTube
     document.querySelector('.suscribite-check-label').style.display = 'none';
     document.getElementById('btn-continuar').style.display = 'none';
 
