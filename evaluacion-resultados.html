@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu resultado CoopchAIn — IA + Blockchain y madurez institucional</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:        #0d2b1f;
+  --bg-soft:   #0a2318;
+  --surface:   #112d20;
+  --line:      #1e4a32;
+  --ink:       #f0ede6;
+  --muted:     #8aab95;
+  --green:     #4ecb8d;
+  --teal:      #2AADA0;
+  --teal-dark: #1d8a7e;
+  --copper:    #c47c3a;
+  --copper-dark:#a86630;
+  --cream:     #F5EFE6;
+  --cream-dark:#E8DFD0;
+  --dark-text: #1a2e1a;
+  --rojo:      #c0392b;
+  --amarillo:  #c47c3a;
+  --verde:     #0B8A4A;
+  --shadow:    0 14px 28px rgba(0,0,0,.35);
+  --radius:    20px;
+  --radius-sm: 14px;
+  --max:       1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+/* HEADER */
+.site-header{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(14px);
+  background:rgba(13,43,31,.95);
+  border-bottom:1px solid rgba(217,209,197,.2);
+  padding:0 20px;
+}
+.header-inner{
+  max-width:var(--max);margin:0 auto;
+  min-height:68px;display:flex;
+  align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--teal),var(--green));
+  box-shadow:var(--shadow);position:relative;flex-shrink:0;
+}
+.brand-mark::after{
+  content:"";position:absolute;inset:7px;border-radius:8px;
+  border:1.5px solid rgba(255,255,255,.7);transform:rotate(10deg)
+}
+.brand-word{font-size:1.05rem;font-weight:800;color:#fff}
+.brand-sub{font-size:.72rem;color:var(--muted)}
+.header-link{
+  font-size:.85rem;font-weight:700;color:var(--muted);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;padding:8px 16px;
+  transition:color .2s,border-color .2s;
+}
+.header-link:hover{color:var(--ink);border-color:rgba(255,255,255,.4)}
+
+/* BOTONES */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 28px;border-radius:var(--radius-sm);
+  font-size:1rem;font-weight:800;cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .18s,box-shadow .18s,background .18s;
+  text-decoration:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 8px 24px rgba(42,173,160,.35)}
+.btn-teal:hover{background:var(--teal-dark)}
+.btn-copper{background:var(--copper);color:#fff;box-shadow:0 8px 24px rgba(196,124,58,.3)}
+.btn-copper:hover{background:var(--copper-dark)}
+.btn-outline{background:transparent;border-color:rgba(255,255,255,.3);color:var(--ink)}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-lg{padding:18px 36px;font-size:1.05rem}
+.btn-full{width:100%;justify-content:center}
+
+/* HERO RESULTADO */
+.hero-resultado{
+  padding:60px 0 48px;
+  background:linear-gradient(160deg,#0a2318,#0d2b1f);
+  border-bottom:1px solid rgba(42,173,160,.15);
+}
+.resultado-top{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:start;
+  margin-bottom:32px;
+}
+.overline{
+  font-size:.75rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:12px;
+}
+.resultado-org{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--ink);line-height:1.1;
+  margin-bottom:8px;
+}
+.resultado-fecha{font-size:.85rem;color:var(--muted);margin-bottom:20px}
+.nivel-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(42,173,160,.12);
+  border:1px solid rgba(42,173,160,.3);
+  border-radius:999px;
+  padding:10px 20px;
+  font-size:.9rem;font-weight:800;
+  color:var(--teal);
+}
+.puntaje-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(42,173,160,.25);
+  border-radius:var(--radius);
+  padding:28px 32px;
+  text-align:center;
+  min-width:160px;
+}
+.puntaje-num{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:3.5rem;font-weight:700;
+  color:var(--teal);line-height:1;
+}
+.puntaje-den{
+  font-size:1.2rem;color:var(--muted);
+  margin-left:4px;
+}
+.puntaje-label{
+  font-size:.78rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:8px;
+}
+.resumen-ejecutivo{
+  background:rgba(42,173,160,.06);
+  border-left:3px solid var(--teal);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:20px 24px;
+  font-size:.95rem;
+  color:var(--ink);
+  line-height:1.8;
+}
+.limitacion-nota{
+  margin-top:20px;
+  font-size:.8rem;
+  color:var(--muted);
+  font-style:italic;
+  padding:12px 16px;
+  background:rgba(255,255,255,.03);
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* SECCIÓN GRÁFICOS */
+.section-graficos{
+  padding:60px 0;
+  background:var(--cream);
+}
+.section-graficos h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.6rem,2.8vw,2.2rem);
+  color:var(--dark-text);
+  margin-bottom:8px;
+}
+.section-graficos .sub{
+  color:#4a6a4a;font-size:.9rem;margin-bottom:36px;
+}
+.graficos-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:start;
+}
+.grafico-card{
+  background:#fff;
+  border:1px solid var(--cream-dark);
+  border-radius:var(--radius);
+  padding:28px 24px;
+}
+.grafico-card h3{
+  font-size:.85rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:20px;
+}
+.radar-wrap{
+  max-width:320px;margin:0 auto;
+}
+.barras-wrap{
+  display:flex;flex-direction:column;gap:14px;
+}
+.barra-row{display:flex;flex-direction:column;gap:5px}
+.barra-label{
+  font-size:.82rem;font-weight:700;
+  color:var(--dark-text);
+  display:flex;justify-content:space-between;
+}
+.barra-label span{font-weight:400;color:#4a6a4a}
+.barra-bg{
+  height:10px;background:var(--cream-dark);
+  border-radius:999px;overflow:hidden;
+}
+.barra-fill{
+  height:100%;border-radius:999px;
+  width:0;transition:width 1s ease;
+}
+.barra-critica  .barra-fill{background:var(--rojo)}
+.barra-intermedia .barra-fill{background:var(--amarillo)}
+.barra-fuerte   .barra-fill{background:var(--verde)}
+
+/* SEMÁFORO */
+.semaforo{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:999px;
+}
+.sem-critica  {background:rgba(192,57,43,.12);color:var(--rojo)}
+.sem-intermedia{background:rgba(196,124,58,.12);color:var(--amarillo)}
+.sem-fuerte   {background:rgba(11,138,74,.12);color:var(--verde)}
+
+/* TABLA INTERPRETATIVA */
+.section-tabla{
+  padding:60px 0;
+  background:var(--bg-soft);
+}
+.section-tabla h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  color:var(--ink);margin-bottom:32px;
+}
+.tabla-dims{display:flex;flex-direction:column;gap:12px}
+.tabla-row{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius-sm);
+  padding:18px 20px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:16px;
+  align-items:start;
+}
+.tabla-row-left h4{
+  font-size:.95rem;font-weight:800;
+  color:var(--ink);margin-bottom:4px;
+}
+.tabla-row-left p{
+  font-size:.85rem;color:var(--muted);line-height:1.6;
+}
+.tabla-row-right{
+  display:flex;flex-direction:column;
+  align-items:flex-end;gap:6px;
+  min-width:100px;
+}
+.tabla-puntaje{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.4rem;font-weight:700;color:var(--ink);
+}
+
+/* ZONAS CIEGAS Y FORTALEZAS */
+.section-zonas{
+  padding:60px 0;
+  background:var(--cream);
+}
+.zonas-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.zona-card{
+  border-radius:var(--radius);
+  padding:28px 24px;
+}
+.zona-ciega{
+  background:#fff;
+  border:1px solid rgba(192,57,43,.2);
+  border-top:4px solid var(--rojo);
+}
+.zona-fortaleza{
+  background:#fff;
+  border:1px solid rgba(11,138,74,.2);
+  border-top:4px solid var(--verde);
+}
+.zona-card .zona-label{
+  font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.zona-ciega .zona-label{color:var(--rojo)}
+.zona-fortaleza .zona-label{color:var(--verde)}
+.zona-card h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.1rem;color:var(--dark-text);
+  margin-bottom:10px;
+}
+.zona-card p{font-size:.88rem;color:#4a6a4a;line-height:1.7}
+
+/* PREGUNTAS DIRECTIVAS */
+.section-preguntas{
+  padding:60px 0;
+  background:var(--bg);
+}
+.section-preguntas h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  color:var(--ink);margin-bottom:8px;
+}
+.section-preguntas .sub{
+  color:var(--muted);font-size:.9rem;margin-bottom:32px;
+}
+.preguntas-list{display:flex;flex-direction:column;gap:14px}
+.pregunta-item{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(42,173,160,.15);
+  border-radius:var(--radius-sm);
+  padding:20px 22px;
+  display:flex;gap:16px;align-items:flex-start;
+}
+.pregunta-num{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.6rem;font-weight:700;
+  color:rgba(42,173,160,.3);
+  line-height:1;flex-shrink:0;width:32px;
+}
+.pregunta-item p{
+  font-size:.95rem;color:var(--ink);
+  line-height:1.7;font-style:italic;
+}
+
+/* CTA */
+.section-cta{
+  padding:72px 0;
+  background:linear-gradient(160deg,#0a2318,#0d2b1f);
+  text-align:center;
+  border-top:1px solid rgba(42,173,160,.15);
+}
+.section-cta h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  color:var(--ink);margin-bottom:12px;
+}
+.section-cta p{
+  color:var(--muted);font-size:.95rem;
+  margin-bottom:36px;max-width:520px;
+  margin-left:auto;margin-right:auto;
+}
+.cta-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:24px;
+}
+.diagnostico-def{
+  max-width:540px;margin:0 auto;
+  font-size:.82rem;color:var(--muted);
+  line-height:1.7;font-style:italic;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* PUENTE LIBRO */
+.section-libro{
+  padding:60px 0;
+  background:var(--surface);
+  border-top:1px solid rgba(42,173,160,.1);
+}
+.libro-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;align-items:center;
+}
+.libro-copy h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  color:var(--ink);margin-bottom:14px;
+}
+.libro-copy p{color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:12px}
+.libro-titulo-visual{
+  background:rgba(42,173,160,.06);
+  border:1px solid rgba(42,173,160,.2);
+  border-radius:var(--radius);
+  padding:36px 28px;
+  text-align:center;
+  display:flex;flex-direction:column;gap:14px;align-items:center;
+}
+.libro-tit{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:2rem;font-weight:700;line-height:1.1;
+}
+.libro-tit span{color:var(--teal)}
+.libro-tit em{font-style:normal;color:var(--copper)}
+.libro-sub-txt{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.5}
+
+/* FOOTER */
+.site-footer{
+  padding:28px 20px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.footer-inner{
+  max-width:var(--max);margin:0 auto;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:.8rem;color:var(--muted)}
+.footer-link{color:var(--muted);transition:color .2s}
+.footer-link:hover{color:var(--teal)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .graficos-grid,
+  .zonas-grid,
+  .libro-inner{grid-template-columns:1fr}
+  .resultado-top{grid-template-columns:1fr}
+  .puntaje-card{text-align:left;min-width:unset}
+  .tabla-row{grid-template-columns:1fr}
+  .tabla-row-right{align-items:flex-start}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 24px)}
+  .btn-lg{padding:16px 20px;font-size:.95rem}
+  .cta-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-mark"></div>
+      <div>
+        <span class="brand-word">Coopch<span style="color:var(--copper)">AI</span>n</span>
+        <span class="brand-sub">Blockchain, IA y Cooperativismo</span>
+      </div>
+    </a>
+    <a href="index.html" class="header-link">Conocer CoopchAIn</a>
+  </div>
+</header>
+
+<!-- HERO RESULTADO -->
+<section class="hero-resultado">
+  <div class="container">
+    <div class="resultado-top">
+      <div>
+        <p class="overline">Resultado de autoevaluación CoopchAIn</p>
+        <h1 class="resultado-org" id="resOrg">—</h1>
+        <p class="resultado-fecha" id="resFecha">—</p>
+        <div class="nivel-badge" id="resNivel">—</div>
+      </div>
+      <div class="puntaje-card">
+        <div>
+          <span class="puntaje-num" id="resPuntaje">—</span>
+          <span class="puntaje-den">/36</span>
+        </div>
+        <p class="puntaje-label">Puntaje total</p>
+      </div>
+    </div>
+    <div class="resumen-ejecutivo" id="resResumen">—</div>
+    <p class="limitacion-nota">Este resultado no debe leerse como un diagnóstico definitivo. Es una primera señal sobre cómo tu organización está interpretando y absorbiendo IA, blockchain, automatización y nuevos modelos de confianza.</p>
+  </div>
+</section>
+
+<!-- GRÁFICOS -->
+<section class="section-graficos">
+  <div class="container">
+    <h2>Perfil por dimensión</h2>
+    <p class="sub">Visualizá el equilibrio sistémico de tu organización en las 6 dimensiones evaluadas</p>
+    <div class="graficos-grid">
+      <div class="grafico-card">
+        <h3>Gráfico radar</h3>
+        <div class="radar-wrap">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+      <div class="grafico-card">
+        <h3>Puntaje por dimensión</h3>
+        <div class="barras-wrap" id="barrasWrap"><!-- JS --></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA INTERPRETATIVA -->
+<section class="section-tabla">
+  <div class="container">
+    <h2>Interpretación por dimensión</h2>
+    <div class="tabla-dims" id="tablaDims"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ZONAS CIEGAS Y FORTALEZAS -->
+<section class="section-zonas">
+  <div class="container">
+    <div class="zonas-grid">
+      <div class="zona-card zona-ciega">
+        <p class="zona-label">⚠ Zona ciega prioritaria</p>
+        <h3 id="zonaCiegaNombre">—</h3>
+        <p id="zonaCiegaTexto">—</p>
+      </div>
+      <div class="zona-card zona-fortaleza">
+        <p class="zona-label">✓ Fortaleza inicial</p>
+        <h3 id="zonaFuerteNombre">—</h3>
+        <p id="zonaFuerteTexto">—</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREGUNTAS DIRECTIVAS -->
+<section class="section-preguntas">
+  <div class="container">
+    <h2>Preguntas para tu reunión directiva</h2>
+    <p class="sub">Basadas en las dimensiones más débiles de tu resultado</p>
+    <div class="preguntas-list" id="preguntasList"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta">
+  <div class="container">
+    <h2>El siguiente paso depende de lo que este resultado abrió</h2>
+    <p>La autoevaluación es una puerta de entrada. La verdadera adaptación depende de observar procesos, cultura, datos y gobernanza desde dentro.</p>
+    <div class="cta-actions">
+      <a href="https://coopchain.pro/guia-coopchain.pdf" class="btn btn-teal btn-lg" target="_blank">Descargar guía gratuita</a>
+      <a href="https://coopchain.pro/evaluacion-ia-blockchain" class="btn btn-copper btn-lg">Solicitar conversación diagnóstica</a>
+    </div>
+    <p class="diagnostico-def">Conversación diagnóstica CoopchAIn: reunión breve de 30 a 45 minutos para revisar el resultado de la autoevaluación, identificar dimensiones críticas y explorar si tiene sentido avanzar hacia una revisión más profunda sobre IA, blockchain, gobernanza, cultura, procesos y modelo de valor.</p>
+  </div>
+</section>
+
+<!-- PUENTE LIBRO -->
+<section class="section-libro">
+  <div class="container">
+    <div class="libro-inner">
+      <div class="libro-copy">
+        <h2>La guía abre las preguntas. El libro desarrolla el marco completo.</h2>
+        <p>CoopchAIn: Un diseño postsingularidad propone mirar la convergencia entre inteligencia artificial, blockchain y cooperativismo no como una suma de tecnologías, sino como una oportunidad para rediseñar instituciones.</p>
+        <p>Cuando la IA vuelve abundante la eficiencia, lo escaso vuelve a ser confianza, criterio, gobernanza y sentido compartido.</p>
+        <a href="index.html" class="btn btn-copper" style="margin-top:8px">Conocer CoopchAIn</a>
+      </div>
+      <div class="libro-titulo-visual">
+        <p class="libro-tit">Coopch<span>AI</span><em>n</em></p>
+        <p class="libro-sub-txt">Un diseño postsingularidad<br>Blockchain, IA y Cooperativismo frente al nuevo paradigma institucional</p>
+        <a href="evaluacion-ia-blockchain.html" class="btn btn-outline" style="font-size:.85rem;padding:10px 20px">Volver a la evaluación</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 CoopchAIn · <a href="index.html" class="footer-link">www.coopchain.pro</a></span>
+    <span class="footer-copy">Esta autoevaluación es una primera señal, no un diagnóstico definitivo.</span>
+  </div>
+</footer>
+
+<script>
+// ── DATOS ──────────────────────────────────────────────────────────────
+var DIMS = [
+  { key:'percepcion', label:'Percepción estratégica' },
+  { key:'sistemica',  label:'Visión sistémica' },
+  { key:'gobernanza', label:'Gobernanza institucional' },
+  { key:'cultura',    label:'Cultura y capacidades humanas' },
+  { key:'procesos',   label:'Procesos y trazabilidad' },
+  { key:'valor',      label:'Modelo de valor y comunidad' }
+];
+
+var RESUMENES = {
+  'Organización reactiva': 'El resultado sugiere que la organización todavía observa IA y blockchain como fenómenos externos, técnicos o lejanos. El riesgo principal no es no tener herramientas, sino no percibir a tiempo cómo cambia la infraestructura de confianza, datos, procesos y creación de valor.',
+  'Organización fragmentada': 'El resultado muestra conciencia inicial, pero con riesgo de dispersión. Puede haber conversaciones, pilotos o capacitaciones, pero todavía no parece existir una arquitectura que conecte tecnología, gobernanza, cultura, procesos y modelo de negocio.',
+  'Organización en transición sistémica': 'El resultado indica que la organización ya empieza a conectar variables relevantes. El desafío es transformar esa conciencia en una hoja de ruta con prioridades, responsables, métricas y pilotos institucionales bien diseñados.',
+  'Organización preparada para rediseño institucional': 'El resultado sugiere condiciones favorables para avanzar hacia un rediseño más sofisticado. El desafío ya no es entender la relevancia del cambio, sino elegir dónde intervenir primero y cómo gobernar los efectos sistémicos.'
+};
+
+var COMENTARIOS = {
+  percepcion: {
+    critica:    'La organización parece mirar IA y blockchain desde una lógica instrumental. El riesgo es interpretar un cambio estructural como una suma de herramientas aisladas.',
+    intermedia: 'Existe conciencia inicial sobre el cambio, pero aún puede faltar una revisión más profunda de supuestos, valores y modelos mentales.',
+    fuerte:     'La organización muestra capacidad para interpretar IA y blockchain como fuerzas que pueden modificar su modelo institucional, no solo como tecnología operativa.'
+  },
+  sistemica: {
+    critica:    'Las soluciones podrían estar diseñándose como parches. El riesgo es mejorar un área y debilitar la coordinación del sistema completo.',
+    intermedia: 'Hay señales de integración, pero todavía conviene mapear mejor interdependencias entre personas, procesos, datos, cultura y modelo económico.',
+    fuerte:     'La organización parece comprender que toda tecnología reordena relaciones, flujos, incentivos y responsabilidades.'
+  },
+  gobernanza: {
+    critica:    'La gobernanza tecnológica parece débil o dispersa. El riesgo es que las decisiones queden en manos de áreas técnicas, proveedores o urgencias coyunturales.',
+    intermedia: 'Existen criterios o responsables iniciales, pero todavía puede faltar una instancia transversal con autoridad real.',
+    fuerte:     'La organización muestra condiciones para gobernar IA, datos y automatización con criterios institucionales y no solo técnicos.'
+  },
+  cultura: {
+    critica:    'La absorción tecnológica puede estar limitada por baja preparación del personal, resistencia cultural o falta de criterio crítico.',
+    intermedia: 'La organización está desarrollando capacidades, pero necesita pasar de capacitaciones instrumentales a formación estratégica.',
+    fuerte:     'Existe una base cultural favorable para aprender, experimentar, cuestionar y rediseñar formas de trabajo.'
+  },
+  procesos: {
+    critica:    'La organización podría estar intentando automatizar procesos que todavía no entiende o no tiene suficientemente documentados.',
+    intermedia: 'Hay avances en identificación de procesos, pero todavía conviene distinguir qué debe rediseñarse antes de automatizarse.',
+    fuerte:     'La organización muestra condiciones para avanzar hacia automatización, auditoría y trazabilidad con menor riesgo de acelerar desorden.'
+  },
+  valor: {
+    critica:    'El impacto sobre ingresos, servicios, comunidad y pertenencia parece poco explorado. El riesgo es digitalizar sin fortalecer confianza.',
+    intermedia: 'La organización empieza a conectar tecnología con modelo de valor, pero necesita mayor claridad sobre oportunidades y amenazas.',
+    fuerte:     'La organización parece preparada para explorar nuevos servicios, redes digitales y formas de confianza distribuida sin perder vínculo comunitario.'
+  }
+};
+
+var PREGUNTAS_DIR = {
+  percepcion: '¿Qué cambios podríamos no estar viendo porque seguimos interpretando el futuro con categorías del pasado?',
+  sistemica:  '¿Qué efecto tendría una solución tecnológica sobre áreas, procesos, cultura, datos y modelo económico?',
+  gobernanza: '¿Quién debería tener responsabilidad transversal sobre IA, datos, automatización y confianza digital?',
+  cultura:    '¿El personal está preparado para adoptar estas tecnologías con criterio o solo para operar herramientas?',
+  procesos:   '¿Qué procesos deberíamos rediseñar antes de automatizar?',
+  valor:      '¿Qué parte de nuestro valor actual depende de fricciones que podrían desaparecer?'
+};
+
+// ── HELPERS ────────────────────────────────────────────────────────────
+function getNivel(score) {
+  if (score <= 9)  return 'Organización reactiva';
+  if (score <= 18) return 'Organización fragmentada';
+  if (score <= 27) return 'Organización en transición sistémica';
+  return 'Organización preparada para rediseño institucional';
+}
+
+function getEstado(score) {
+  if (score <= 2) return 'critica';
+  if (score <= 4) return 'intermedia';
+  return 'fuerte';
+}
+
+function getEstadoLabel(estado) {
+  if (estado === 'critica')   return '<span class="semaforo sem-critica">Crítica</span>';
+  if (estado === 'intermedia') return '<span class="semaforo sem-intermedia">En desarrollo</span>';
+  return '<span class="semaforo sem-fuerte">Fortaleza</span>';
+}
+
+function getBarraClass(estado) {
+  if (estado === 'critica')   return 'barra-critica';
+  if (estado === 'intermedia') return 'barra-intermedia';
+  return 'barra-fuerte';
+}
+
+// ── MAIN ───────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  // Leer sessionStorage
+  var raw = sessionStorage.getItem('coopchain_evaluacion');
+  if (!raw) {
+    window.location.href = 'evaluacion-ia-blockchain.html';
+    return;
+  }
+  var d = JSON.parse(raw);
+  var scores = d.scores;
+  var nivel  = getNivel(scores.total);
+
+  // ── HERO ──
+  document.getElementById('resOrg').textContent     = d.organizacion || '—';
+  document.getElementById('resFecha').textContent   = 'Resultado del ' + (d.fecha || new Date().toLocaleDateString('es-AR'));
+  document.getElementById('resNivel').textContent   = nivel;
+  document.getElementById('resPuntaje').textContent = scores.total;
+  document.getElementById('resResumen').textContent = RESUMENES[nivel] || '';
+
+  // ── DIMENSIONES (array ordenado) ──
+  var dimScores = [
+    { key:'percepcion', label:'Percepción estratégica',       val: scores.percepcion },
+    { key:'sistemica',  label:'Visión sistémica',              val: scores.sistemica  },
+    { key:'gobernanza', label:'Gobernanza institucional',      val: scores.gobernanza },
+    { key:'cultura',    label:'Cultura y capacidades humanas', val: scores.cultura    },
+    { key:'procesos',   label:'Procesos y trazabilidad',       val: scores.procesos   },
+    { key:'valor',      label:'Modelo de valor y comunidad',   val: scores.valor      }
+  ];
+
+  // ── RADAR ──
+  Chart.defaults.color = '#8aab95';
+  Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+  var ctx = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: dimScores.map(function(d){ return d.label }),
+      datasets:[{
+        label: 'Tu organización',
+        data:  dimScores.map(function(d){ return d.val }),
+        backgroundColor: 'rgba(42,173,160,.15)',
+        borderColor:     'rgba(42,173,160,.8)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(42,173,160,1)',
+        pointRadius: 4
+      }]
+    },
+    options:{
+      responsive:true,
+      scales:{
+        r:{
+          min:0, max:6,
+          ticks:{ stepSize:2, color:'#8aab95', backdropColor:'transparent' },
+          grid:{ color:'rgba(255,255,255,.08)' },
+          angleLines:{ color:'rgba(255,255,255,.08)' },
+          pointLabels:{ color:'#4a6a4a', font:{ size:10 } }
+        }
+      },
+      plugins:{ legend:{ display:false } }
+    }
+  });
+
+  // ── BARRAS ──
+  var barrasWrap = document.getElementById('barrasWrap');
+  dimScores.forEach(function(dim) {
+    var estado = getEstado(dim.val);
+    var pct    = Math.round(dim.val / 6 * 100);
+    var div = document.createElement('div');
+    div.className = 'barra-row ' + getBarraClass(estado);
+    div.innerHTML =
+      '<div class="barra-label">' + dim.label + '<span>' + dim.val + '/6</span></div>' +
+      '<div class="barra-bg"><div class="barra-fill" data-w="' + pct + '"></div></div>';
+    barrasWrap.appendChild(div);
+  });
+  // animar barras
+  setTimeout(function(){
+    document.querySelectorAll('.barra-fill').forEach(function(b){
+      b.style.width = b.dataset.w + '%';
+    });
+  }, 300);
+
+  // ── TABLA INTERPRETATIVA ──
+  var tabla = document.getElementById('tablaDims');
+  dimScores.forEach(function(dim) {
+    var estado  = getEstado(dim.val);
+    var comentario = COMENTARIOS[dim.key][estado];
+    var row = document.createElement('div');
+    row.className = 'tabla-row';
+    row.innerHTML =
+      '<div class="tabla-row-left">' +
+        '<h4>' + dim.label + '</h4>' +
+        '<p>' + comentario + '</p>' +
+      '</div>' +
+      '<div class="tabla-row-right">' +
+        '<span class="tabla-puntaje">' + dim.val + '<span style="font-size:.9rem;color:var(--muted)">/6</span></span>' +
+        getEstadoLabel(estado) +
+      '</div>';
+    tabla.appendChild(row);
+  });
+
+  // ── ZONAS CIEGAS Y FORTALEZAS ──
+  var sorted = dimScores.slice().sort(function(a,b){ return a.val - b.val });
+  var ciega  = sorted[0];
+  var fuerte = sorted[sorted.length - 1];
+
+  document.getElementById('zonaCiegaNombre').textContent = ciega.label;
+  document.getElementById('zonaCiegaTexto').textContent  = COMENTARIOS[ciega.key][getEstado(ciega.val)];
+  document.getElementById('zonaFuerteNombre').textContent = fuerte.label;
+  document.getElementById('zonaFuerteTexto').textContent  = COMENTARIOS[fuerte.key][getEstado(fuerte.val)];
+
+  // ── PREGUNTAS DIRECTIVAS ──
+  // Las 3 dimensiones más bajas
+  var debilesKeys = sorted.slice(0,3).map(function(d){ return d.key });
+  var lista = document.getElementById('preguntasList');
+  debilesKeys.forEach(function(key, i) {
+    var item = document.createElement('div');
+    item.className = 'pregunta-item';
+    item.innerHTML =
+      '<span class="pregunta-num">' + (i+1) + '</span>' +
+      '<p>' + PREGUNTAS_DIR[key] + '</p>';
+    lista.appendChild(item);
+  });
+});
+</script>
+</body>
+</html>
