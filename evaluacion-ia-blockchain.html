@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autoevaluación CoopchAIn — IA + Blockchain y madurez institucional</title>
+<meta name="description" content="Evaluá en 3 minutos qué tan preparada está tu organización para interpretar, gobernar y absorber el impacto de IA y blockchain.">
+<style>
+:root {
+  --bg:       #0d2b1f;
+  --bg-soft:  #0a2318;
+  --surface:  #112d20;
+  --line:     #1e4a32;
+  --ink:      #f0ede6;
+  --muted:    #8aab95;
+  --green:    #4ecb8d;
+  --teal:     #2AADA0;
+  --teal-dark:#1d8a7e;
+  --copper:   #c47c3a;
+  --copper-dark:#a86630;
+  --cream:    #F5EFE6;
+  --cream-dark:#E8DFD0;
+  --dark-text:#1a2e1a;
+  --shadow:   0 14px 28px rgba(0,0,0,.35);
+  --radius:   20px;
+  --radius-sm:14px;
+  --max:      1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+/* ── HEADER ── */
+.site-header{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(14px);
+  background:rgba(13,43,31,.95);
+  border-bottom:1px solid rgba(217,209,197,.2);
+  padding:0 20px;
+}
+.header-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--teal),var(--green));
+  box-shadow:var(--shadow);position:relative;flex-shrink:0;
+}
+.brand-mark::after{
+  content:"";position:absolute;inset:7px;border-radius:8px;
+  border:1.5px solid rgba(255,255,255,.7);transform:rotate(10deg)
+}
+.brand-word{font-size:1.05rem;font-weight:800;color:#fff}
+.brand-sub{font-size:.72rem;color:var(--muted)}
+.header-link{
+  font-size:.85rem;font-weight:700;color:var(--muted);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;padding:8px 16px;
+  transition:color .2s,border-color .2s;
+}
+.header-link:hover{color:var(--ink);border-color:rgba(255,255,255,.4)}
+
+/* ── BOTONES ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 28px;border-radius:var(--radius-sm);
+  font-size:1rem;font-weight:800;cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .18s,box-shadow .18s,background .18s;
+  text-decoration:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-teal{
+  background:var(--teal);color:#fff;
+  box-shadow:0 8px 24px rgba(42,173,160,.35);
+}
+.btn-teal:hover{background:var(--teal-dark)}
+.btn-copper{
+  background:var(--copper);color:#fff;
+  box-shadow:0 8px 24px rgba(196,124,58,.3);
+}
+.btn-copper:hover{background:var(--copper-dark)}
+.btn-outline-cream{
+  background:transparent;
+  border-color:rgba(245,239,230,.4);
+  color:var(--cream);
+}
+.btn-outline-cream:hover{border-color:var(--cream);background:rgba(245,239,230,.08)}
+.btn-lg{padding:18px 36px;font-size:1.1rem}
+.btn-full{width:100%}
+
+/* ── HERO ── */
+.hero{
+  padding:80px 0 70px;
+  background:linear-gradient(160deg, #0a2318 0%, #0d2b1f 60%, #0f3022 100%);
+  border-bottom:1px solid rgba(42,173,160,.15);
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.overline{
+  font-size:.75rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;
+}
+.hero-copy h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);
+  line-height:1.06;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:20px;
+}
+.hero-copy h1 em{
+  font-style:normal;
+  color:var(--teal);
+}
+.hero-lead{
+  font-size:1.1rem;
+  color:var(--muted);
+  line-height:1.75;
+  margin-bottom:32px;
+  max-width:500px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-trust{
+  margin-top:28px;
+  font-size:.82rem;
+  color:var(--muted);
+  display:flex;align-items:center;gap:8px;
+}
+.hero-trust::before{
+  content:"";display:block;width:28px;height:1px;
+  background:var(--teal);opacity:.5;
+}
+.hero-visual{
+  background:linear-gradient(135deg,rgba(42,173,160,.08),rgba(196,124,58,.06));
+  border:1px solid rgba(42,173,160,.2);
+  border-radius:var(--radius);
+  padding:36px 32px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.hero-visual-title{
+  font-size:.78rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:4px;
+}
+.dimension-preview{display:flex;flex-direction:column;gap:10px}
+.dim-row{display:flex;align-items:center;gap:12px}
+.dim-label{font-size:.85rem;color:var(--muted);width:180px;flex-shrink:0}
+.dim-bar-bg{
+  flex:1;height:6px;
+  background:rgba(255,255,255,.08);
+  border-radius:4px;overflow:hidden;
+}
+.dim-bar{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg,var(--teal),var(--green));
+  width:0;transition:width 1.2s ease;
+}
+.hero-visual-note{
+  font-size:.8rem;color:var(--muted);
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+  font-style:italic;
+}
+
+/* ── SECCIÓN PROBLEMA ── */
+.section-problema{
+  padding:72px 0;
+  background:var(--cream);
+}
+.section-problema .container{max-width:760px;text-align:center}
+.section-problema h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--dark-text);
+  margin-bottom:20px;
+  line-height:1.15;
+}
+.section-problema p{
+  font-size:1.05rem;
+  color:#3a5a3a;
+  line-height:1.8;
+  margin-bottom:16px;
+}
+.riesgo-box{
+  margin-top:32px;
+  background:var(--dark-text);
+  color:var(--cream);
+  border-radius:var(--radius-sm);
+  padding:24px 28px;
+  font-size:1rem;
+  line-height:1.7;
+}
+.riesgo-box strong{color:var(--teal);}
+
+/* ── TRES MIRADAS ── */
+.section-miradas{
+  padding:72px 0;
+  background:var(--bg);
+}
+.section-miradas h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.section-miradas .section-intro{
+  color:var(--muted);font-size:1rem;
+  margin-bottom:40px;max-width:600px;
+}
+.miradas-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.mirada-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s,transform .2s;
+}
+.mirada-card:hover{
+  border-color:rgba(42,173,160,.3);
+  transform:translateY(-3px);
+}
+.mirada-card--featured{
+  border-color:rgba(42,173,160,.4);
+  background:rgba(42,173,160,.06);
+}
+.mirada-num{
+  font-size:.72rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);
+}
+.mirada-card h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.15rem;color:var(--ink);
+}
+.mirada-card p{
+  font-size:.9rem;color:var(--muted);line-height:1.7;flex:1;
+}
+.mirada-tag{
+  display:inline-block;
+  font-size:.72rem;font-weight:800;
+  padding:5px 10px;border-radius:999px;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.tag-riesgo{background:rgba(196,124,58,.15);color:var(--copper)}
+.tag-oportunidad{background:rgba(42,173,160,.15);color:var(--teal)}
+
+/* ── QUÉ EVALÚA ── */
+.section-evalua{
+  padding:72px 0;
+  background:var(--cream);
+}
+.section-evalua h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  color:var(--dark-text);
+  margin-bottom:8px;
+}
+.section-evalua .section-intro{
+  color:#3a5a3a;font-size:1rem;
+  margin-bottom:40px;max-width:600px;
+}
+.dimensiones-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.dim-card{
+  background:#fff;
+  border:1px solid var(--cream-dark);
+  border-radius:var(--radius-sm);
+  padding:22px 20px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.dim-card-num{
+  font-size:.72rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);
+}
+.dim-card h3{
+  font-size:.95rem;font-weight:800;color:var(--dark-text);
+}
+.dim-card p{font-size:.85rem;color:#4a6a4a;line-height:1.6}
+
+/* ── PARA QUIÉN ── */
+.section-para-quien{
+  padding:64px 0;
+  background:var(--bg-soft);
+  border-top:1px solid rgba(42,173,160,.1);
+  border-bottom:1px solid rgba(42,173,160,.1);
+}
+.section-para-quien h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.6rem,2.8vw,2.2rem);
+  color:var(--ink);margin-bottom:32px;
+}
+.org-grid{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.org-tag{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:9px 18px;
+  font-size:.88rem;
+  font-weight:700;
+  color:var(--ink);
+  transition:border-color .2s,background .2s;
+}
+.org-tag:hover{
+  border-color:rgba(42,173,160,.5);
+  background:rgba(42,173,160,.08);
+}
+
+/* ── NOTA ANTES DE RESPONDER ── */
+.section-nota{
+  padding:48px 0;
+  background:var(--cream);
+}
+.nota-box{
+  max-width:700px;
+  margin:0 auto;
+  text-align:center;
+}
+.nota-box h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.4rem;color:var(--dark-text);
+  margin-bottom:14px;
+}
+.nota-box p{
+  font-size:.95rem;color:#4a6a4a;line-height:1.8;
+}
+
+/* ── FORMULARIO ── */
+.section-form{
+  padding:72px 0 80px;
+  background:var(--bg);
+  scroll-margin-top:80px;
+}
+.form-wrap{
+  max-width:760px;
+  margin:0 auto;
+}
+.form-header{
+  text-align:center;margin-bottom:40px;
+}
+.form-header h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  color:var(--ink);margin-bottom:10px;
+}
+.form-header p{color:var(--muted);font-size:.95rem}
+.form-shell{
+  background:rgba(255,255,255,.97);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:36px 32px;
+  color:var(--dark-text);
+}
+.form-step-title{
+  font-size:.78rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:20px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--cream-dark);
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{
+  font-size:.85rem;font-weight:700;
+  color:var(--dark-text);
+}
+.form-group input,
+.form-group select{
+  padding:12px 14px;
+  border:1px solid var(--cream-dark);
+  border-radius:10px;
+  font-size:.95rem;
+  color:var(--dark-text);
+  background:#fff;
+  transition:border-color .2s;
+  width:100%;
+}
+.form-group input:focus,
+.form-group select:focus{
+  outline:none;
+  border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(42,173,160,.12);
+}
+.opcional{
+  font-size:.75rem;font-weight:400;
+  color:#8aab95;margin-left:4px;
+}
+
+/* ── AUTOEVALUACIÓN ── */
+.eval-section-title{
+  font-size:.78rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);
+  margin:28px 0 8px;
+  padding-top:24px;
+  border-top:1px solid var(--cream-dark);
+}
+.eval-dimension-label{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1rem;font-weight:700;
+  color:var(--dark-text);
+  margin-bottom:16px;
+}
+.eval-question{
+  margin-bottom:20px;
+  padding:16px;
+  background:var(--cream);
+  border-radius:10px;
+  border:1px solid var(--cream-dark);
+}
+.eval-question p{
+  font-size:.9rem;
+  color:var(--dark-text);
+  line-height:1.6;
+  margin-bottom:12px;
+  font-weight:600;
+}
+.eval-scale{
+  display:flex;gap:8px;flex-wrap:wrap;
+}
+.eval-scale input[type="radio"]{display:none}
+.eval-scale label{
+  display:flex;flex-direction:column;align-items:center;
+  gap:4px;cursor:pointer;
+  padding:10px 14px;
+  border:1.5px solid var(--cream-dark);
+  border-radius:8px;
+  font-size:.8rem;
+  font-weight:700;
+  color:#4a6a4a;
+  transition:all .18s;
+  flex:1;min-width:80px;text-align:center;
+}
+.eval-scale label:hover{
+  border-color:var(--teal);
+  background:rgba(42,173,160,.06);
+}
+.eval-scale input[type="radio"]:checked + label{
+  border-color:var(--teal);
+  background:rgba(42,173,160,.12);
+  color:var(--teal-dark);
+}
+.scale-num{
+  font-size:1.1rem;font-weight:800;
+  color:var(--dark-text);
+}
+.eval-scale input[type="radio"]:checked + label .scale-num{
+  color:var(--teal);
+}
+
+/* ── ESCALA LEGEND ── */
+.scale-legend{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:24px;
+  padding:14px;
+  background:var(--cream);
+  border-radius:10px;
+  border:1px solid var(--cream-dark);
+}
+.scale-legend-item{
+  display:flex;flex-direction:column;
+  gap:3px;
+}
+.scale-legend-num{
+  font-size:1rem;font-weight:800;color:var(--teal);
+}
+.scale-legend-text{
+  font-size:.75rem;color:#4a6a4a;line-height:1.4;
+}
+
+/* ── INTERÉS ── */
+.interes-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:8px;
+}
+.interes-option input[type="checkbox"]{display:none}
+.interes-option label{
+  display:block;
+  padding:10px 14px;
+  border:1.5px solid var(--cream-dark);
+  border-radius:8px;
+  font-size:.83rem;
+  font-weight:600;
+  color:#4a6a4a;
+  cursor:pointer;
+  transition:all .18s;
+}
+.interes-option label:hover{
+  border-color:var(--copper);
+  background:rgba(196,124,58,.05);
+}
+.interes-option input:checked + label{
+  border-color:var(--copper);
+  background:rgba(196,124,58,.1);
+  color:var(--copper-dark);
+}
+
+/* ── CONSENTIMIENTO ── */
+.consentimiento{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:16px;
+  background:rgba(42,173,160,.06);
+  border:1px solid rgba(42,173,160,.2);
+  border-radius:10px;
+  margin-top:20px;
+}
+.consentimiento input[type="checkbox"]{
+  width:18px;height:18px;
+  accent-color:var(--teal);
+  margin-top:2px;flex-shrink:0;cursor:pointer;
+}
+.consentimiento label{
+  font-size:.85rem;color:#3a5a3a;line-height:1.6;cursor:pointer;
+}
+
+/* ── ERROR ── */
+.form-error{
+  display:none;
+  background:#fff0ee;
+  border:1px solid #e06060;
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:.85rem;
+  color:#c00;
+  margin-bottom:16px;
+}
+
+/* ── QUÉ RECIBIRÁS ── */
+.section-recibe{
+  padding:64px 0;
+  background:var(--cream);
+}
+.section-recibe h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.6rem,2.8vw,2.2rem);
+  color:var(--dark-text);
+  margin-bottom:32px;
+  text-align:center;
+}
+.recibe-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.recibe-card{
+  background:#fff;
+  border:1px solid var(--cream-dark);
+  border-radius:var(--radius-sm);
+  padding:22px 18px;
+  text-align:center;
+  display:flex;flex-direction:column;gap:8px;
+}
+.recibe-icon{font-size:2rem}
+.recibe-card h3{
+  font-size:.9rem;font-weight:800;
+  color:var(--dark-text);
+}
+.recibe-card p{
+  font-size:.8rem;color:#4a6a4a;line-height:1.5;
+}
+
+/* ── SOBRE COOPCHAIN ── */
+.section-sobre{
+  padding:72px 0;
+  background:var(--bg-soft);
+}
+.sobre-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.sobre-copy h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  color:var(--ink);margin-bottom:16px;
+}
+.sobre-copy p{
+  color:var(--muted);font-size:.95rem;
+  line-height:1.8;margin-bottom:14px;
+}
+.tesis-box{
+  background:rgba(42,173,160,.08);
+  border-left:3px solid var(--teal);
+  padding:16px 20px;
+  border-radius:0 10px 10px 0;
+  font-size:.92rem;
+  color:var(--ink);
+  line-height:1.7;
+  margin-top:20px;
+}
+.sobre-visual{
+  background:linear-gradient(160deg,rgba(42,173,160,.1),rgba(196,124,58,.06));
+  border:1px solid rgba(42,173,160,.2);
+  border-radius:var(--radius);
+  padding:36px 28px;
+  text-align:center;
+  display:flex;flex-direction:column;gap:16px;align-items:center;
+}
+.libro-titulo{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.8rem;
+  font-weight:700;
+  line-height:1.1;
+}
+.libro-titulo span{color:var(--teal)}
+.libro-titulo em{font-style:normal;color:var(--copper)}
+.libro-sub{
+  font-size:.85rem;color:var(--muted);
+  font-style:italic;
+  line-height:1.5;
+}
+.libro-desc{
+  font-size:.88rem;color:var(--muted);line-height:1.7;
+}
+
+/* ── CTA FINAL ── */
+.section-cta-final{
+  padding:80px 0;
+  background:linear-gradient(160deg,#0a2318,#0d2b1f);
+  text-align:center;
+  border-top:1px solid rgba(42,173,160,.15);
+}
+.section-cta-final h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--ink);
+  margin-bottom:16px;
+  max-width:640px;
+  margin-left:auto;margin-right:auto;
+}
+.section-cta-final p{
+  color:var(--muted);
+  font-size:1rem;
+  margin-bottom:36px;
+  max-width:520px;
+  margin-left:auto;margin-right:auto;
+}
+.cta-final-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  padding:32px 20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+.footer-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.footer-copy{font-size:.8rem;color:var(--muted)}
+.footer-link{
+  font-size:.8rem;color:var(--muted);
+  text-decoration:none;
+  transition:color .2s;
+}
+.footer-link:hover{color:var(--teal)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:980px){
+  .hero-inner,
+  .sobre-inner{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .miradas-grid,
+  .dimensiones-grid{grid-template-columns:1fr}
+  .recibe-grid{grid-template-columns:repeat(2,1fr)}
+  .form-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 24px)}
+  .scale-legend{grid-template-columns:repeat(2,1fr)}
+  .interes-grid{grid-template-columns:1fr}
+  .recibe-grid{grid-template-columns:1fr}
+  .btn-lg{padding:16px 24px;font-size:1rem}
+  .form-shell{padding:24px 18px}
+  .eval-scale label{min-width:60px;padding:8px 8px}
+  .cta-final-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-mark"></div>
+      <div>
+        <span class="brand-word">Coopch<span style="color:var(--copper)">AI</span>n</span>
+        <span class="brand-sub">Blockchain, IA y Cooperativismo</span>
+      </div>
+    </a>
+    <a href="index.html" class="header-link">Conocer CoopchAIn</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="overline">Autoevaluación gratuita</p>
+        <h1>IA + Blockchain: ¿tu organización está <em>viendo el cambio</em> o solo sus síntomas?</h1>
+        <p class="hero-lead">Evaluá en 3 minutos qué tan preparada está tu organización para interpretar, gobernar y absorber el impacto de IA, blockchain, automatización y nuevos modelos de confianza.</p>
+        <div class="hero-actions">
+          <a href="#formulario" class="btn btn-teal btn-lg">Evaluar mi organización</a>
+        </div>
+        <p class="hero-trust">Resultado inmediato · Sin registro previo · Guía gratuita incluida</p>
+      </div>
+      <div class="hero-visual">
+        <p class="hero-visual-title">6 dimensiones evaluadas</p>
+        <div class="dimension-preview" id="dimPreview">
+          <div class="dim-row"><span class="dim-label">Percepción estratégica</span><div class="dim-bar-bg"><div class="dim-bar" data-w="75"></div></div></div>
+          <div class="dim-row"><span class="dim-label">Visión sistémica</span><div class="dim-bar-bg"><div class="dim-bar" data-w="60"></div></div></div>
+          <div class="dim-row"><span class="dim-label">Gobernanza institucional</span><div class="dim-bar-bg"><div class="dim-bar" data-w="40"></div></div></div>
+          <div class="dim-row"><span class="dim-label">Cultura y capacidades</span><div class="dim-bar-bg"><div class="dim-bar" data-w="55"></div></div></div>
+          <div class="dim-row"><span class="dim-label">Procesos y trazabilidad</span><div class="dim-bar-bg"><div class="dim-bar" data-w="65"></div></div></div>
+          <div class="dim-row"><span class="dim-label">Modelo de valor</span><div class="dim-bar-bg"><div class="dim-bar" data-w="50"></div></div></div>
+        </div>
+        <p class="hero-visual-note">Ejemplo ilustrativo — tu resultado será personalizado</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section-problema">
+  <div class="container">
+    <h2>El riesgo no es adoptar tarde una herramienta</h2>
+    <p>Muchas organizaciones ya están hablando de inteligencia artificial. Algunas prueban herramientas. Otras automatizan tareas. Pero pocas se están haciendo la pregunta central:</p>
+    <p><strong>¿Qué cambia en nuestra organización si estas tecnologías modifican la confianza, la gobernanza, los procesos, los datos, el trabajo y el modelo de negocio?</strong></p>
+    <p>Una herramienta puede acelerar una tarea. Pero también puede concentrar poder, volver opacas las decisiones, exponer procesos débiles y alterar roles si no se integra dentro de una visión institucional más amplia.</p>
+    <div class="riesgo-box">
+      <strong>El verdadero riesgo</strong> no es quedarse atrás tecnológicamente.<br>
+      Es quedarse atrás <strong style="color:var(--copper)">perceptivamente</strong>: mirar un cambio sistémico como si fuera un problema técnico aislado.
+    </div>
+  </div>
+</section>
+
+<!-- TRES MIRADAS -->
+<section class="section-miradas">
+  <div class="container">
+    <p class="overline">Tres formas de enfrentar el cambio</p>
+    <h2>¿Desde dónde está mirando tu organización?</h2>
+    <p class="section-intro">No todas las organizaciones ven la tecnología igual. La diferencia no es de recursos — es de perspectiva.</p>
+    <div class="miradas-grid">
+      <div class="mirada-card">
+        <span class="mirada-num">Nivel 1</span>
+        <h3>Tecnología como parche</h3>
+        <p>La organización busca resolver molestias puntuales: ahorrar tiempo, automatizar tareas, modernizar una imagen. Puede obtener mejoras rápidas, pero corre el riesgo de digitalizar síntomas sin revisar causas.</p>
+        <span class="mirada-tag tag-riesgo">Riesgo: parches aislados</span>
+      </div>
+      <div class="mirada-card">
+        <span class="mirada-num">Nivel 2</span>
+        <h3>Tecnología como proyecto aislado</h3>
+        <p>Hay pilotos, capacitaciones e iniciativas por área. Hay movimiento, entusiasmo y aprendizaje. Pero falta integración. El riesgo es construir islas tecnológicas que no modifican capacidades reales.</p>
+        <span class="mirada-tag tag-riesgo">Riesgo: islas tecnológicas</span>
+      </div>
+      <div class="mirada-card mirada-card--featured">
+        <span class="mirada-num">Nivel 3</span>
+        <h3>Tecnología como rediseño institucional</h3>
+        <p>La organización comprende que IA y blockchain pueden alterar su modelo de negocio, cultura, gobernanza, procesos, datos y vínculo con socios, clientes o miembros. La tecnología se convierte en palanca de rediseño.</p>
+        <span class="mirada-tag tag-oportunidad">Oportunidad: rediseño real</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ EVALÚA -->
+<section class="section-evalua">
+  <div class="container">
+    <p class="overline" style="color:var(--teal)">6 dimensiones críticas</p>
+    <h2>¿Qué mide esta autoevaluación?</h2>
+    <p class="section-intro">No mide cuántas herramientas usa tu organización. Mide si tiene la madurez perceptiva, cultural y estratégica para adaptarse al nuevo paradigma tecnológico.</p>
+    <div class="dimensiones-grid">
+      <div class="dim-card">
+        <span class="dim-card-num">01</span>
+        <h3>Percepción estratégica</h3>
+        <p>¿La organización interpreta IA y blockchain como herramientas aisladas o como fuerzas capaces de modificar su modelo institucional?</p>
+      </div>
+      <div class="dim-card">
+        <span class="dim-card-num">02</span>
+        <h3>Visión sistémica</h3>
+        <p>¿Las soluciones tecnológicas se diseñan considerando sus efectos sobre personas, procesos, cultura, datos, riesgos y modelo económico?</p>
+      </div>
+      <div class="dim-card">
+        <span class="dim-card-num">03</span>
+        <h3>Gobernanza institucional</h3>
+        <p>¿Existe una instancia formal y transversal que gobierne el impacto estratégico de IA, datos, blockchain y automatización?</p>
+      </div>
+      <div class="dim-card">
+        <span class="dim-card-num">04</span>
+        <h3>Cultura y capacidades humanas</h3>
+        <p>¿El personal está preparado para comprender, adoptar y cuestionar críticamente las nuevas tecnologías?</p>
+      </div>
+      <div class="dim-card">
+        <span class="dim-card-num">05</span>
+        <h3>Procesos y trazabilidad</h3>
+        <p>¿La organización sabe qué procesos debe rediseñar antes de automatizar y qué decisiones deben ser auditables?</p>
+      </div>
+      <div class="dim-card">
+        <span class="dim-card-num">06</span>
+        <h3>Modelo de valor y comunidad</h3>
+        <p>¿La transformación digital fortalece la confianza, la participación y el sentido de pertenencia, o solo aumenta eficiencia?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="section-para-quien">
+  <div class="container">
+    <p class="overline">Para quién es esta evaluación</p>
+    <h2>Pensada para organizaciones que necesitan mirar el cambio más allá de la moda</h2>
+    <div class="org-grid">
+      <span class="org-tag">Bancos</span>
+      <span class="org-tag">Cooperativas</span>
+      <span class="org-tag">Mutuales</span>
+      <span class="org-tag">Empresas</span>
+      <span class="org-tag">Fintechs</span>
+      <span class="org-tag">Asociaciones y ONGs</span>
+      <span class="org-tag">Universidades</span>
+      <span class="org-tag">Instituciones educativas</span>
+      <span class="org-tag">Gobiernos locales</span>
+      <span class="org-tag">Organismos de desarrollo</span>
+      <span class="org-tag">Cámaras empresariales</span>
+      <span class="org-tag">Organizaciones comunitarias</span>
+    </div>
+  </div>
+</section>
+
+<!-- NOTA ANTES DE RESPONDER -->
+<section class="section-nota">
+  <div class="container">
+    <div class="nota-box">
+      <h3>Antes de responder</h3>
+      <p>Esta autoevaluación no reemplaza un diagnóstico institucional. Una encuesta breve no puede ver cómo se toman realmente las decisiones, qué procesos están rotos, dónde se concentra la información ni qué incentivos bloquean el cambio.</p>
+      <p style="margin-top:12px">Lo que sí puede mostrar es una primera señal: si tu organización está mirando IA y blockchain como herramientas, como proyectos aislados o como fuerzas capaces de rediseñar su arquitectura institucional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO + AUTOEVALUACIÓN -->
+<section class="section-form" id="formulario">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-header">
+        <p class="overline">Autoevaluación CoopchAIn</p>
+        <h2>Evaluá tu organización</h2>
+        <p>12 preguntas · Resultado inmediato · Guía gratuita incluida</p>
+      </div>
+
+      <div class="form-shell">
+        <div id="formError" class="form-error">Por favor completá todos los campos obligatorios y respondé las 12 preguntas antes de continuar.</div>
+
+        <!-- DATOS BÁSICOS -->
+        <p class="form-step-title">Datos básicos</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombre">Nombre <span style="color:#e06060">*</span></label>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span style="color:#e06060">*</span></label>
+            <input type="email" id="email" placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label for="organizacion">Organización <span style="color:#e06060">*</span></label>
+            <input type="text" id="organizacion" placeholder="Nombre de tu organización">
+          </div>
+          <div class="form-group">
+            <label for="pais">País <span style="color:#e06060">*</span></label>
+            <input type="text" id="pais" placeholder="Argentina">
+          </div>
+          <div class="form-group">
+            <label for="tipo_org">Tipo de organización <span style="color:#e06060">*</span></label>
+            <select id="tipo_org">
+              <option value="">Seleccioná una opción</option>
+              <option value="Banco">Banco</option>
+              <option value="Cooperativa">Cooperativa</option>
+              <option value="Mutual">Mutual</option>
+              <option value="Empresa">Empresa</option>
+              <option value="Fintech">Fintech</option>
+              <option value="Asociación / ONG">Asociación / ONG</option>
+              <option value="Universidad / educación">Universidad / educación</option>
+              <option value="Sector público">Sector público</option>
+              <option value="Cámara / gremio / federación">Cámara / gremio / federación</option>
+              <option value="Consultora">Consultora</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo o rol <span class="opcional">(opcional)</span></label>
+            <input type="text" id="cargo" placeholder="Tu cargo">
+          </div>
+        </div>
+
+        <!-- ESCALA -->
+        <p class="eval-section-title">Autoevaluación — Escala de respuesta</p>
+        <div class="scale-legend">
+          <div class="scale-legend-item"><span class="scale-legend-num">0</span><span class="scale-legend-text">No está en agenda</span></div>
+          <div class="scale-legend-item"><span class="scale-legend-num">1</span><span class="scale-legend-text">Se conversa, sin acciones concretas</span></div>
+          <div class="scale-legend-item"><span class="scale-legend-num">2</span><span class="scale-legend-text">Hay iniciativas aisladas</span></div>
+          <div class="scale-legend-item"><span class="scale-legend-num">3</span><span class="scale-legend-text">Hay estrategia, responsables y seguimiento</span></div>
+        </div>
+
+        <!-- DIMENSIÓN 1 -->
+        <p class="eval-section-title">Dimensión 1 — Percepción estratégica</p>
+        <div class="eval-question">
+          <p>1. ¿La organización interpreta IA y blockchain como herramientas aisladas o como fuerzas capaces de modificar su modelo de negocio, gobernanza y forma de crear valor?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q1" id="q1_0" value="0"><label for="q1_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q1" id="q1_1" value="1"><label for="q1_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>2. ¿La dirigencia revisa los supuestos, valores y marcos mentales desde los cuales interpreta los cambios tecnológicos?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q2" id="q2_0" value="0"><label for="q2_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q2" id="q2_1" value="1"><label for="q2_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q2" id="q2_2" value="2"><label for="q2_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- DIMENSIÓN 2 -->
+        <p class="eval-section-title">Dimensión 2 — Visión sistémica</p>
+        <div class="eval-question">
+          <p>3. ¿Las soluciones tecnológicas se diseñan considerando sus efectos sobre procesos, personas, cultura, datos, riesgos y modelo económico?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q3" id="q3_0" value="0"><label for="q3_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q3" id="q3_1" value="1"><label for="q3_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>4. ¿Se identifican interdependencias entre áreas antes de automatizar o digitalizar procesos críticos?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q4" id="q4_0" value="0"><label for="q4_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q4" id="q4_1" value="1"><label for="q4_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- DIMENSIÓN 3 -->
+        <p class="eval-section-title">Dimensión 3 — Gobernanza institucional</p>
+        <div class="eval-question">
+          <p>5. ¿Existe una instancia formal y transversal que gobierne el impacto estratégico de IA, datos, blockchain y automatización?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q5" id="q5_0" value="0"><label for="q5_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q5" id="q5_1" value="1"><label for="q5_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q5" id="q5_2" value="2"><label for="q5_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>6. ¿Hay criterios claros sobre qué decisiones puede recomendar una IA y cuáles deben permanecer bajo responsabilidad humana?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q6" id="q6_0" value="0"><label for="q6_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q6" id="q6_1" value="1"><label for="q6_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- DIMENSIÓN 4 -->
+        <p class="eval-section-title">Dimensión 4 — Cultura y capacidades humanas</p>
+        <div class="eval-question">
+          <p>7. ¿El personal está preparado para comprender, adoptar y cuestionar críticamente las nuevas tecnologías?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q7" id="q7_0" value="0"><label for="q7_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q7" id="q7_1" value="1"><label for="q7_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q7" id="q7_2" value="2"><label for="q7_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>8. ¿La cultura interna permite aprender, experimentar y rediseñar formas de trabajo sin vivir cada cambio como amenaza?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q8" id="q8_0" value="0"><label for="q8_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q8" id="q8_1" value="1"><label for="q8_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q8" id="q8_2" value="2"><label for="q8_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- DIMENSIÓN 5 -->
+        <p class="eval-section-title">Dimensión 5 — Procesos y trazabilidad</p>
+        <div class="eval-question">
+          <p>9. ¿La organización tiene identificados sus procesos críticos y sabe cuáles deben rediseñarse antes de automatizarse?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q9" id="q9_0" value="0"><label for="q9_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q9" id="q9_1" value="1"><label for="q9_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q9" id="q9_2" value="2"><label for="q9_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>10. ¿Los procesos clave dejan evidencia verificable, auditable y trazable para sostener confianza y rendición de cuentas?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q10" id="q10_0" value="0"><label for="q10_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q10" id="q10_1" value="1"><label for="q10_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q10" id="q10_2" value="2"><label for="q10_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- DIMENSIÓN 6 -->
+        <p class="eval-section-title">Dimensión 6 — Modelo de valor y comunidad</p>
+        <div class="eval-question">
+          <p>11. ¿La organización evalúa cómo IA, dinero digital, tokenización o redes interoperables pueden afectar sus ingresos, servicios y posición en el ecosistema?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q11" id="q11_0" value="0"><label for="q11_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q11" id="q11_1" value="1"><label for="q11_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+        <div class="eval-question">
+          <p>12. ¿La transformación digital fortalece la confianza, participación y sentido de pertenencia de socios, clientes, usuarios o miembros?</p>
+          <div class="eval-scale">
+            <input type="radio" name="q12" id="q12_0" value="0"><label for="q12_0"><span class="scale-num">0</span>No está en agenda</label>
+            <input type="radio" name="q12" id="q12_1" value="1"><label for="q12_1"><span class="scale-num">1</span>Se conversa</label>
+            <input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2"><span class="scale-num">2</span>Iniciativas aisladas</label>
+            <input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3"><span class="scale-num">3</span>Estrategia activa</label>
+          </div>
+        </div>
+
+        <!-- INTERÉS -->
+        <p class="eval-section-title">¿Sobre qué tema te gustaría profundizar? <span class="opcional">(opcional)</span></p>
+        <div class="interes-grid">
+          <div class="interes-option"><input type="checkbox" id="int1" name="interes" value="Gobernanza de IA y datos"><label for="int1">Gobernanza de IA y datos</label></div>
+          <div class="interes-option"><input type="checkbox" id="int2" name="interes" value="Rediseño de procesos"><label for="int2">Rediseño de procesos</label></div>
+          <div class="interes-option"><input type="checkbox" id="int3" name="interes" value="Blockchain, trazabilidad y tokenización"><label for="int3">Blockchain, trazabilidad y tokenización</label></div>
+          <div class="interes-option"><input type="checkbox" id="int4" name="interes" value="Cultura organizacional y liderazgo"><label for="int4">Cultura organizacional y liderazgo</label></div>
+          <div class="interes-option"><input type="checkbox" id="int5" name="interes" value="Cooperativas, mutuales y asociativismo digital"><label for="int5">Cooperativas, mutuales y asociativismo digital</label></div>
+          <div class="interes-option"><input type="checkbox" id="int6" name="interes" value="Futuro del trabajo"><label for="int6">Futuro del trabajo</label></div>
+          <div class="interes-option"><input type="checkbox" id="int7" name="interes" value="Nuevos modelos de negocio digitales"><label for="int7">Nuevos modelos de negocio digitales</label></div>
+          <div class="interes-option"><input type="checkbox" id="int8" name="interes" value="Formación para equipos directivos"><label for="int8">Formación para equipos directivos</label></div>
+          <div class="interes-option"><input type="checkbox" id="int9" name="interes" value="Diagnóstico institucional"><label for="int9">Diagnóstico institucional</label></div>
+          <div class="interes-option"><input type="checkbox" id="int10" name="interes" value="Otro"><label for="int10">Otro</label></div>
+        </div>
+
+        <!-- CONSENTIMIENTO -->
+        <div class="consentimiento">
+          <input type="checkbox" id="consentimiento">
+          <label for="consentimiento">Acepto recibir la guía, el resultado de la autoevaluación y comunicaciones relacionadas con CoopchAIn, inteligencia artificial, blockchain y diagnóstico institucional. No se compartirán datos con terceros sin autorización. <span style="color:#e06060">*</span></label>
+        </div>
+
+        <!-- SUBMIT -->
+        <div style="margin-top:28px">
+          <button onclick="enviarFormulario()" class="btn btn-teal btn-lg btn-full" id="btnEnviar">
+            Ver mi resultado y descargar la guía
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ RECIBIRÁS -->
+<section class="section-recibe">
+  <div class="container">
+    <h2>Qué recibirás al completar la evaluación</h2>
+    <div class="recibe-grid">
+      <div class="recibe-card">
+        <span class="recibe-icon">📊</span>
+        <h3>Resultado inmediato</h3>
+        <p>Categoría de madurez institucional y puntaje total sobre 36</p>
+      </div>
+      <div class="recibe-card">
+        <span class="recibe-icon">🔍</span>
+        <h3>Dashboard por dimensión</h3>
+        <p>Análisis visual de las 6 dimensiones con zonas ciegas y fortalezas</p>
+      </div>
+      <div class="recibe-card">
+        <span class="recibe-icon">📋</span>
+        <h3>Guía estratégica gratuita</h3>
+        <p>20 dilemas para detectar ceguera institucional y oportunidades de rediseño</p>
+      </div>
+      <div class="recibe-card">
+        <span class="recibe-icon">💬</span>
+        <h3>Preguntas directivas</h3>
+        <p>3 preguntas específicas para abrir la conversación estratégica en tu organización</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE COOPCHAIN -->
+<section class="section-sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-copy">
+        <p class="overline">Sobre CoopchAIn</p>
+        <h2>Cuando la eficiencia se vuelve abundante, lo escaso es la confianza</h2>
+        <p>CoopchAIn es un marco conceptual que conecta inteligencia artificial, blockchain y cooperación como la forma más elevada de inteligencia humana.</p>
+        <p>Su objetivo es repensar la confianza, la gobernanza, el trabajo, el dinero digital y las organizaciones en una era postsingularidad.</p>
+        <div class="tesis-box">
+          Cuando la IA vuelve abundante la eficiencia, lo escaso y urgente es la <strong>confianza</strong>, la <strong>coordinación</strong>, la <strong>gobernanza</strong> y la <strong>legitimación comunitaria</strong>.
+        </div>
+      </div>
+      <div class="sobre-visual">
+        <p class="libro-titulo">Coopch<span>AI</span><em>n</em></p>
+        <p class="libro-sub">Un diseño postsingularidad<br>Blockchain, IA y Cooperativismo frente al nuevo paradigma institucional</p>
+        <p class="libro-desc">La autoevaluación y la guía son una introducción práctica a las ideas desarrolladas en el libro.</p>
+        <a href="index.html" class="btn btn-copper">Conocer CoopchAIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section-cta-final">
+  <div class="container">
+    <h2>La pregunta no es solo qué tecnología va a adoptar tu organización</h2>
+    <p>La pregunta es si está preparada para comprender lo que esa tecnología va a revelar.</p>
+    <div class="cta-final-actions">
+      <a href="#formulario" class="btn btn-teal btn-lg">Evaluar mi organización</a>
+      <a href="index.html" class="btn btn-outline-cream">Conocer CoopchAIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 CoopchAIn · <a href="index.html" class="footer-link">www.coopchain.pro</a></span>
+    <span class="footer-copy">Esta autoevaluación es una primera señal, no un diagnóstico definitivo.</span>
+  </div>
+</footer>
+
+<script>
+// Animar barras del hero
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.querySelectorAll('.dim-bar').forEach(function(bar) {
+      bar.style.width = bar.dataset.w + '%';
+    });
+  }, 400);
+});
+
+function getRadioValue(name) {
+  var radios = document.getElementsByName(name);
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) return parseInt(radios[i].value);
+  }
+  return null;
+}
+
+function getIntereses() {
+  var checks = document.querySelectorAll('input[name="interes"]:checked');
+  var vals = [];
+  checks.forEach(function(c) { vals.push(c.value); });
+  return vals.join(', ');
+}
+
+function calcularScores(answers) {
+  return {
+    total: answers.reduce(function(a, b) { return a + b; }, 0),
+    percepcion: answers[0] + answers[1],
+    sistemica:  answers[2] + answers[3],
+    gobernanza: answers[4] + answers[5],
+    cultura:    answers[6] + answers[7],
+    procesos:   answers[8] + answers[9],
+    valor:      answers[10] + answers[11]
+  };
+}
+
+function getCategoria(total) {
+  if (total <= 9)  return 'Organización reactiva';
+  if (total <= 18) return 'Organización fragmentada';
+  if (total <= 27) return 'Organización en transición sistémica';
+  return 'Organización preparada para rediseño institucional';
+}
+
+function getDimMasDebil(scores) {
+  var dims = [
+    { key: 'percepcion', label: 'Percepción estratégica',      val: scores.percepcion },
+    { key: 'sistemica',  label: 'Visión sistémica',             val: scores.sistemica  },
+    { key: 'gobernanza', label: 'Gobernanza institucional',     val: scores.gobernanza },
+    { key: 'cultura',    label: 'Cultura y capacidades humanas',val: scores.cultura    },
+    { key: 'procesos',   label: 'Procesos y trazabilidad',      val: scores.procesos   },
+    { key: 'valor',      label: 'Modelo de valor y comunidad',  val: scores.valor      }
+  ];
+  dims.sort(function(a, b) { return a.val - b.val; });
+  return dims[0].label;
+}
+
+function getDimMasFuerte(scores) {
+  var dims = [
+    { key: 'percepcion', label: 'Percepción estratégica',      val: scores.percepcion },
+    { key: 'sistemica',  label: 'Visión sistémica',             val: scores.sistemica  },
+    { key: 'gobernanza', label: 'Gobernanza institucional',     val: scores.gobernanza },
+    { key: 'cultura',    label: 'Cultura y capacidades humanas',val: scores.cultura    },
+    { key: 'procesos',   label: 'Procesos y trazabilidad',      val: scores.procesos   },
+    { key: 'valor',      label: 'Modelo de valor y comunidad',  val: scores.valor      }
+  ];
+  dims.sort(function(a, b) { return b.val - a.val; });
+  return dims[0].label;
+}
+
+async function enviarFormulario() {
+  var errorBox = document.getElementById('formError');
+  errorBox.style.display = 'none';
+
+  // Validar datos básicos
+  var nombre = document.getElementById('nombre').value.trim();
+  var email  = document.getElementById('email').value.trim();
+  var org    = document.getElementById('organizacion').value.trim();
+  var pais   = document.getElementById('pais').value.trim();
+  var tipo   = document.getElementById('tipo_org').value;
+  var cargo  = document.getElementById('cargo').value.trim();
+  var consent= document.getElementById('consentimiento').checked;
+
+  if (!nombre || !email || !org || !pais || !tipo || !consent) {
+    errorBox.style.display = 'block';
+    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Validar preguntas
+  var answers = [];
+  for (var i = 1; i <= 12; i++) {
+    var val = getRadioValue('q' + i);
+    if (val === null) {
+      errorBox.style.display = 'block';
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    answers.push(val);
+  }
+
+  // Calcular scores
+  var scores   = calcularScores(answers);
+  var categoria= getCategoria(scores.total);
+  var debil    = getDimMasDebil(scores);
+  var fuerte   = getDimMasFuerte(scores);
+  var interes  = getIntereses();
+
+  // Guardar en sessionStorage para la página de resultados
+  var datos = {
+    nombre: nombre,
+    email:  email,
+    organizacion: org,
+    pais:   pais,
+    tipo_organizacion: tipo,
+    cargo:  cargo,
+    answers: answers,
+    scores:  scores,
+    resultado_categoria: categoria,
+    dimension_mas_debil: debil,
+    dimension_mas_fuerte: fuerte,
+    interes_principal: interes,
+    fecha: new Date().toLocaleDateString('es-AR')
+  };
+  sessionStorage.setItem('coopchain_evaluacion', JSON.stringify(datos));
+
+  // Deshabilitar botón mientras guarda
+  var btn = document.getElementById('btnEnviar');
+  btn.textContent = 'Guardando...';
+  btn.disabled = true;
+
+  // Guardar en Supabase
+  try {
+    var SUPABASE_URL = 'https://xiuqpxburuqqvcpyiewj.supabase.co';
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpdXFweGJ1cnVxcXZjcHlpZXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDQ1MDAsImV4cCI6MjA4ODU4MDUwMH0.-bPj4q9UaKnvJ6nOmvsaYILW0h2UW395hhRk_gs4rUo';
+
+    var payload = {
+      nombre: nombre,
+      email:  email,
+      organizacion: org,
+      pais:   pais,
+      tipo_organizacion: tipo,
+      cargo:  cargo || null,
+      q1: answers[0], q2: answers[1], q3: answers[2], q4: answers[3],
+      q5: answers[4], q6: answers[5], q7: answers[6], q8: answers[7],
+      q9: answers[8], q10: answers[9], q11: answers[10], q12: answers[11],
+      score_total:     scores.total,
+      score_percepcion:scores.percepcion,
+      score_sistemica: scores.sistemica,
+      score_gobernanza:scores.gobernanza,
+      score_cultura:   scores.cultura,
+      score_procesos:  scores.procesos,
+      score_valor:     scores.valor,
+      resultado_categoria:  categoria,
+      dimension_mas_debil:  debil,
+      dimension_mas_fuerte: fuerte,
+      interes_principal:    interes || null,
+      consentimiento: true
+    };
+
+    await fetch(SUPABASE_URL + '/rest/v1/Evaluaciones', {
+      method: 'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        'apikey':        SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer':        'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    // Si falla Supabase igual continuamos — los datos están en sessionStorage
+    console.warn('Supabase insert failed:', e);
+  }
+
+  // Redirigir a resultados
+  window.location.href = 'evaluacion-resultados.html';
+}
+</script>
+</body>
+</html>
