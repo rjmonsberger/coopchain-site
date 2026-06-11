@@ -23,7 +23,7 @@
   --dark-text: #1a2e1a;
   --rojo:      #c0392b;
   --amarillo:  #c47c3a;
-  --verde:     #0B8A4A;
+  --verde-dim: #0B8A4A;
   --shadow:    0 14px 28px rgba(0,0,0,.35);
   --radius:    20px;
   --radius-sm: 14px;
@@ -35,7 +35,8 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   color:var(--ink);
   background:var(--bg);
-  line-height:1.6;
+  line-height:1.7;
+  font-size:1rem;
 }
 a{color:inherit;text-decoration:none}
 .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
@@ -64,9 +65,9 @@ a{color:inherit;text-decoration:none}
   border:1.5px solid rgba(255,255,255,.7);transform:rotate(10deg)
 }
 .brand-word{font-size:1.05rem;font-weight:800;color:#fff}
-.brand-sub{font-size:.72rem;color:var(--muted)}
+.brand-sub{font-size:.82rem;color:var(--muted)}
 .header-link{
-  font-size:.85rem;font-weight:700;color:var(--muted);
+  font-size:.9rem;font-weight:700;color:var(--muted);
   border:1px solid rgba(255,255,255,.15);
   border-radius:8px;padding:8px 16px;
   transition:color .2s,border-color .2s;
@@ -76,7 +77,7 @@ a{color:inherit;text-decoration:none}
 /* BOTONES */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
-  padding:14px 28px;border-radius:var(--radius-sm);
+  padding:16px 32px;border-radius:var(--radius-sm);
   font-size:1rem;font-weight:800;cursor:pointer;
   border:2px solid transparent;
   transition:transform .18s,box-shadow .18s,background .18s;
@@ -106,24 +107,24 @@ a{color:inherit;text-decoration:none}
   margin-bottom:32px;
 }
 .overline{
-  font-size:.75rem;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;
+  font-size:.82rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
   color:var(--teal);margin-bottom:12px;
 }
 .resultado-org{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-size:clamp(2rem,3.5vw,3rem);
   color:var(--ink);line-height:1.1;
   margin-bottom:8px;
 }
-.resultado-fecha{font-size:.85rem;color:var(--muted);margin-bottom:20px}
+.resultado-fecha{font-size:.95rem;color:var(--muted);margin-bottom:20px}
 .nivel-badge{
   display:inline-flex;align-items:center;gap:10px;
   background:rgba(42,173,160,.12);
   border:1px solid rgba(42,173,160,.3);
   border-radius:999px;
-  padding:10px 20px;
-  font-size:.9rem;font-weight:800;
+  padding:12px 22px;
+  font-size:1rem;font-weight:800;
   color:var(--teal);
 }
 .puntaje-card{
@@ -136,51 +137,52 @@ a{color:inherit;text-decoration:none}
 }
 .puntaje-num{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:3.5rem;font-weight:700;
+  font-size:3.8rem;font-weight:700;
   color:var(--teal);line-height:1;
 }
 .puntaje-den{
-  font-size:1.2rem;color:var(--muted);
+  font-size:1.3rem;color:var(--muted);
   margin-left:4px;
 }
 .puntaje-label{
-  font-size:.78rem;font-weight:800;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--muted);margin-top:8px;
+  font-size:.88rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-top:10px;
 }
 .resumen-ejecutivo{
   background:rgba(42,173,160,.06);
   border-left:3px solid var(--teal);
   border-radius:0 var(--radius-sm) var(--radius-sm) 0;
-  padding:20px 24px;
-  font-size:.95rem;
+  padding:24px 28px;
+  font-size:1rem;
   color:var(--ink);
   line-height:1.8;
 }
 .limitacion-nota{
   margin-top:20px;
-  font-size:.8rem;
+  font-size:.9rem;
   color:var(--muted);
   font-style:italic;
-  padding:12px 16px;
+  padding:14px 18px;
   background:rgba(255,255,255,.03);
   border-radius:8px;
   border:1px solid rgba(255,255,255,.06);
+  line-height:1.7;
 }
 
 /* SECCIÓN GRÁFICOS */
 .section-graficos{
-  padding:60px 0;
+  padding:64px 0;
   background:var(--cream);
 }
 .section-graficos h2{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.6rem,2.8vw,2.2rem);
+  font-size:clamp(1.8rem,3vw,2.4rem);
   color:var(--dark-text);
   margin-bottom:8px;
 }
 .section-graficos .sub{
-  color:#4a6a4a;font-size:.9rem;margin-bottom:36px;
+  color:#4a6a4a;font-size:1rem;margin-bottom:40px;
 }
 .graficos-grid{
   display:grid;
@@ -195,88 +197,94 @@ a{color:inherit;text-decoration:none}
   padding:28px 24px;
 }
 .grafico-card h3{
-  font-size:.85rem;font-weight:800;
+  font-size:.88rem;font-weight:800;
   letter-spacing:.1em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:20px;
+  color:var(--teal);margin-bottom:24px;
 }
 .radar-wrap{
   max-width:320px;margin:0 auto;
 }
 .barras-wrap{
-  display:flex;flex-direction:column;gap:14px;
+  display:flex;flex-direction:column;gap:18px;
 }
-.barra-row{display:flex;flex-direction:column;gap:5px}
+.barra-row{display:flex;flex-direction:column;gap:7px}
 .barra-label{
-  font-size:.82rem;font-weight:700;
+  font-size:.95rem;font-weight:700;
   color:var(--dark-text);
   display:flex;justify-content:space-between;
+  align-items:center;
 }
-.barra-label span{font-weight:400;color:#4a6a4a}
+.barra-label span{font-size:.9rem;font-weight:600;color:#4a6a4a}
 .barra-bg{
-  height:10px;background:var(--cream-dark);
+  height:12px;background:var(--cream-dark);
   border-radius:999px;overflow:hidden;
 }
 .barra-fill{
   height:100%;border-radius:999px;
   width:0;transition:width 1s ease;
 }
-.barra-critica  .barra-fill{background:var(--rojo)}
+.barra-critica   .barra-fill{background:var(--rojo)}
 .barra-intermedia .barra-fill{background:var(--amarillo)}
-.barra-fuerte   .barra-fill{background:var(--verde)}
+.barra-fuerte    .barra-fill{background:var(--verde-dim)}
 
 /* SEMÁFORO */
 .semaforo{
   display:inline-flex;align-items:center;gap:6px;
-  font-size:.72rem;font-weight:800;
-  letter-spacing:.08em;text-transform:uppercase;
-  padding:3px 10px;border-radius:999px;
+  font-size:.8rem;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;
 }
-.sem-critica  {background:rgba(192,57,43,.12);color:var(--rojo)}
+.sem-critica   {background:rgba(192,57,43,.12);color:var(--rojo)}
 .sem-intermedia{background:rgba(196,124,58,.12);color:var(--amarillo)}
-.sem-fuerte   {background:rgba(11,138,74,.12);color:var(--verde)}
+.sem-fuerte    {background:rgba(11,138,74,.12);color:var(--verde-dim)}
 
 /* TABLA INTERPRETATIVA */
 .section-tabla{
-  padding:60px 0;
+  padding:64px 0;
   background:var(--bg-soft);
 }
 .section-tabla h2{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.5rem,2.5vw,2rem);
+  font-size:clamp(1.8rem,3vw,2.4rem);
   color:var(--ink);margin-bottom:32px;
 }
-.tabla-dims{display:flex;flex-direction:column;gap:12px}
+.tabla-dims{display:flex;flex-direction:column;gap:14px}
 .tabla-row{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.07);
   border-radius:var(--radius-sm);
-  padding:18px 20px;
+  padding:22px 24px;
   display:grid;
   grid-template-columns:1fr auto;
-  gap:16px;
-  align-items:start;
+  gap:20px;
+  align-items:center;
 }
 .tabla-row-left h4{
-  font-size:.95rem;font-weight:800;
-  color:var(--ink);margin-bottom:4px;
+  font-size:1rem;font-weight:800;
+  color:var(--ink);margin-bottom:6px;
 }
 .tabla-row-left p{
-  font-size:.85rem;color:var(--muted);line-height:1.6;
+  font-size:.95rem;color:var(--muted);line-height:1.7;
 }
 .tabla-row-right{
   display:flex;flex-direction:column;
-  align-items:flex-end;gap:6px;
-  min-width:100px;
+  align-items:flex-end;gap:8px;
+  min-width:110px;
 }
 .tabla-puntaje{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:1.4rem;font-weight:700;color:var(--ink);
+  font-size:1.6rem;font-weight:700;color:var(--ink);
 }
 
 /* ZONAS CIEGAS Y FORTALEZAS */
 .section-zonas{
-  padding:60px 0;
+  padding:64px 0;
   background:var(--cream);
+}
+.section-zonas h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.8rem,3vw,2.4rem);
+  color:var(--dark-text);margin-bottom:32px;
 }
 .zonas-grid{
   display:grid;
@@ -285,7 +293,7 @@ a{color:inherit;text-decoration:none}
 }
 .zona-card{
   border-radius:var(--radius);
-  padding:28px 24px;
+  padding:32px 28px;
 }
 .zona-ciega{
   background:#fff;
@@ -295,86 +303,89 @@ a{color:inherit;text-decoration:none}
 .zona-fortaleza{
   background:#fff;
   border:1px solid rgba(11,138,74,.2);
-  border-top:4px solid var(--verde);
+  border-top:4px solid var(--verde-dim);
 }
 .zona-card .zona-label{
-  font-size:.72rem;font-weight:800;
-  letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:10px;
+  font-size:.82rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:12px;display:block;
 }
 .zona-ciega .zona-label{color:var(--rojo)}
-.zona-fortaleza .zona-label{color:var(--verde)}
+.zona-fortaleza .zona-label{color:var(--verde-dim)}
 .zona-card h3{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:1.1rem;color:var(--dark-text);
-  margin-bottom:10px;
+  font-size:1.2rem;color:var(--dark-text);
+  margin-bottom:12px;
 }
-.zona-card p{font-size:.88rem;color:#4a6a4a;line-height:1.7}
+.zona-card p{font-size:.95rem;color:#4a6a4a;line-height:1.75}
 
 /* PREGUNTAS DIRECTIVAS */
 .section-preguntas{
-  padding:60px 0;
+  padding:64px 0;
   background:var(--bg);
 }
 .section-preguntas h2{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.5rem,2.5vw,2rem);
+  font-size:clamp(1.8rem,3vw,2.4rem);
   color:var(--ink);margin-bottom:8px;
 }
 .section-preguntas .sub{
-  color:var(--muted);font-size:.9rem;margin-bottom:32px;
+  color:var(--muted);font-size:1rem;margin-bottom:36px;
 }
-.preguntas-list{display:flex;flex-direction:column;gap:14px}
+.preguntas-list{display:flex;flex-direction:column;gap:16px}
 .pregunta-item{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(42,173,160,.15);
   border-radius:var(--radius-sm);
-  padding:20px 22px;
-  display:flex;gap:16px;align-items:flex-start;
+  padding:24px 26px;
+  display:flex;gap:20px;align-items:flex-start;
 }
 .pregunta-num{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:1.6rem;font-weight:700;
-  color:rgba(42,173,160,.3);
-  line-height:1;flex-shrink:0;width:32px;
+  font-size:1.8rem;font-weight:700;
+  color:rgba(42,173,160,.35);
+  line-height:1;flex-shrink:0;width:36px;
 }
 .pregunta-item p{
-  font-size:.95rem;color:var(--ink);
-  line-height:1.7;font-style:italic;
+  font-size:1rem;color:var(--ink);
+  line-height:1.75;font-style:italic;
 }
 
 /* CTA */
 .section-cta{
-  padding:72px 0;
+  padding:80px 0;
   background:linear-gradient(160deg,#0a2318,#0d2b1f);
   text-align:center;
   border-top:1px solid rgba(42,173,160,.15);
 }
 .section-cta h2{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.6rem,3vw,2.4rem);
-  color:var(--ink);margin-bottom:12px;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  color:var(--ink);margin-bottom:16px;
+  max-width:680px;margin-left:auto;margin-right:auto;
 }
-.section-cta p{
-  color:var(--muted);font-size:.95rem;
-  margin-bottom:36px;max-width:520px;
+.section-cta .cta-intro{
+  color:var(--muted);font-size:1rem;
+  margin-bottom:40px;max-width:560px;
   margin-left:auto;margin-right:auto;
+  line-height:1.8;
 }
 .cta-actions{
-  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:24px;
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:36px;
 }
 .diagnostico-def{
-  max-width:540px;margin:0 auto;
-  font-size:.82rem;color:var(--muted);
-  line-height:1.7;font-style:italic;
-  padding-top:20px;
+  max-width:580px;margin:0 auto;
+  font-size:.92rem;color:var(--muted);
+  line-height:1.8;font-style:italic;
+  padding:20px 24px;
   border-top:1px solid rgba(255,255,255,.08);
+  border-radius:0 0 var(--radius-sm) var(--radius-sm);
 }
 
 /* PUENTE LIBRO */
 .section-libro{
-  padding:60px 0;
+  padding:64px 0;
   background:var(--surface);
   border-top:1px solid rgba(42,173,160,.1);
 }
@@ -385,10 +396,10 @@ a{color:inherit;text-decoration:none}
 }
 .libro-copy h2{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(1.5rem,2.5vw,2rem);
-  color:var(--ink);margin-bottom:14px;
+  font-size:clamp(1.6rem,2.8vw,2.2rem);
+  color:var(--ink);margin-bottom:16px;
 }
-.libro-copy p{color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:12px}
+.libro-copy p{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:14px}
 .libro-titulo-visual{
   background:rgba(42,173,160,.06);
   border:1px solid rgba(42,173,160,.2);
@@ -403,7 +414,7 @@ a{color:inherit;text-decoration:none}
 }
 .libro-tit span{color:var(--teal)}
 .libro-tit em{font-style:normal;color:var(--copper)}
-.libro-sub-txt{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.5}
+.libro-sub-txt{font-size:.92rem;color:var(--muted);font-style:italic;line-height:1.6}
 
 /* FOOTER */
 .site-footer{
@@ -415,7 +426,7 @@ a{color:inherit;text-decoration:none}
   display:flex;justify-content:space-between;
   align-items:center;flex-wrap:wrap;gap:12px;
 }
-.footer-copy{font-size:.8rem;color:var(--muted)}
+.footer-copy{font-size:.88rem;color:var(--muted)}
 .footer-link{color:var(--muted);transition:color .2s}
 .footer-link:hover{color:var(--teal)}
 
@@ -427,12 +438,13 @@ a{color:inherit;text-decoration:none}
   .resultado-top{grid-template-columns:1fr}
   .puntaje-card{text-align:left;min-width:unset}
   .tabla-row{grid-template-columns:1fr}
-  .tabla-row-right{align-items:flex-start}
+  .tabla-row-right{align-items:flex-start;flex-direction:row;gap:12px}
 }
 @media(max-width:600px){
   .container{width:calc(100% - 24px)}
-  .btn-lg{padding:16px 20px;font-size:.95rem}
+  .btn-lg{padding:16px 20px;font-size:1rem}
   .cta-actions{flex-direction:column;align-items:center}
+  .btn{width:100%}
 }
 </style>
 </head>
@@ -471,7 +483,7 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
     <div class="resumen-ejecutivo" id="resResumen">—</div>
-    <p class="limitacion-nota">Este resultado no debe leerse como un diagnóstico definitivo. Es una primera señal sobre cómo tu organización está interpretando y absorbiendo IA, blockchain, automatización y nuevos modelos de confianza.</p>
+    <p class="limitacion-nota">Este resultado no debe leerse como un diagnóstico definitivo. Es una primera señal sobre cómo tu organización está interpretando y absorbiendo IA, blockchain, automatización y nuevos modelos de confianza. Una autoevaluación breve puede abrir preguntas; no puede reemplazar un diagnóstico institucional.</p>
   </div>
 </section>
 
@@ -489,7 +501,7 @@ a{color:inherit;text-decoration:none}
       </div>
       <div class="grafico-card">
         <h3>Puntaje por dimensión</h3>
-        <div class="barras-wrap" id="barrasWrap"><!-- JS --></div>
+        <div class="barras-wrap" id="barrasWrap"></div>
       </div>
     </div>
   </div>
@@ -499,21 +511,22 @@ a{color:inherit;text-decoration:none}
 <section class="section-tabla">
   <div class="container">
     <h2>Interpretación por dimensión</h2>
-    <div class="tabla-dims" id="tablaDims"><!-- JS --></div>
+    <div class="tabla-dims" id="tablaDims"></div>
   </div>
 </section>
 
 <!-- ZONAS CIEGAS Y FORTALEZAS -->
 <section class="section-zonas">
   <div class="container">
+    <h2>Zona ciega y fortaleza inicial</h2>
     <div class="zonas-grid">
       <div class="zona-card zona-ciega">
-        <p class="zona-label">⚠ Zona ciega prioritaria</p>
+        <span class="zona-label">⚠ Zona ciega prioritaria</span>
         <h3 id="zonaCiegaNombre">—</h3>
         <p id="zonaCiegaTexto">—</p>
       </div>
       <div class="zona-card zona-fortaleza">
-        <p class="zona-label">✓ Fortaleza inicial</p>
+        <span class="zona-label">✓ Fortaleza inicial</span>
         <h3 id="zonaFuerteNombre">—</h3>
         <p id="zonaFuerteTexto">—</p>
       </div>
@@ -526,7 +539,7 @@ a{color:inherit;text-decoration:none}
   <div class="container">
     <h2>Preguntas para tu reunión directiva</h2>
     <p class="sub">Basadas en las dimensiones más débiles de tu resultado</p>
-    <div class="preguntas-list" id="preguntasList"><!-- JS --></div>
+    <div class="preguntas-list" id="preguntasList"></div>
   </div>
 </section>
 
@@ -534,10 +547,10 @@ a{color:inherit;text-decoration:none}
 <section class="section-cta">
   <div class="container">
     <h2>El siguiente paso depende de lo que este resultado abrió</h2>
-    <p>La autoevaluación es una puerta de entrada. La verdadera adaptación depende de observar procesos, cultura, datos y gobernanza desde dentro.</p>
+    <p class="cta-intro">La autoevaluación es una puerta de entrada. La verdadera adaptación depende de observar procesos, cultura, datos y gobernanza desde dentro de tu organización.</p>
     <div class="cta-actions">
-      <a href="https://coopchain.pro/guia-coopchain.pdf" class="btn btn-teal btn-lg" target="_blank">Descargar guía gratuita</a>
-      <a href="https://coopchain.pro/evaluacion-ia-blockchain" class="btn btn-copper btn-lg">Solicitar conversación diagnóstica</a>
+      <a href="/Guia_CoopchAIn_IA_Blockchain.pdf" class="btn btn-teal btn-lg" target="_blank" download>Descargar guía gratuita</a>
+      <a href="mailto:rodolfo.monsberger@bimount.io?subject=Conversación diagnóstica CoopchAIn&body=Hola Rodolfo, completé la autoevaluación CoopchAIn y me gustaría explorar una conversación diagnóstica." class="btn btn-copper btn-lg">Solicitar conversación diagnóstica</a>
     </div>
     <p class="diagnostico-def">Conversación diagnóstica CoopchAIn: reunión breve de 30 a 45 minutos para revisar el resultado de la autoevaluación, identificar dimensiones críticas y explorar si tiene sentido avanzar hacia una revisión más profunda sobre IA, blockchain, gobernanza, cultura, procesos y modelo de valor.</p>
   </div>
@@ -551,12 +564,12 @@ a{color:inherit;text-decoration:none}
         <h2>La guía abre las preguntas. El libro desarrolla el marco completo.</h2>
         <p>CoopchAIn: Un diseño postsingularidad propone mirar la convergencia entre inteligencia artificial, blockchain y cooperativismo no como una suma de tecnologías, sino como una oportunidad para rediseñar instituciones.</p>
         <p>Cuando la IA vuelve abundante la eficiencia, lo escaso vuelve a ser confianza, criterio, gobernanza y sentido compartido.</p>
-        <a href="index.html" class="btn btn-copper" style="margin-top:8px">Conocer CoopchAIn</a>
+        <a href="index.html" class="btn btn-copper" style="margin-top:12px">Conocer CoopchAIn</a>
       </div>
       <div class="libro-titulo-visual">
         <p class="libro-tit">Coopch<span>AI</span><em>n</em></p>
         <p class="libro-sub-txt">Un diseño postsingularidad<br>Blockchain, IA y Cooperativismo frente al nuevo paradigma institucional</p>
-        <a href="evaluacion-ia-blockchain.html" class="btn btn-outline" style="font-size:.85rem;padding:10px 20px">Volver a la evaluación</a>
+        <a href="evaluacion-ia-blockchain" class="btn btn-outline" style="font-size:.9rem;padding:12px 22px">Volver a la evaluación</a>
       </div>
     </div>
   </div>
@@ -571,7 +584,6 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
-// ── DATOS ──────────────────────────────────────────────────────────────
 var DIMS = [
   { key:'percepcion', label:'Percepción estratégica' },
   { key:'sistemica',  label:'Visión sistémica' },
@@ -630,7 +642,6 @@ var PREGUNTAS_DIR = {
   valor:      '¿Qué parte de nuestro valor actual depende de fricciones que podrían desaparecer?'
 };
 
-// ── HELPERS ────────────────────────────────────────────────────────────
 function getNivel(score) {
   if (score <= 9)  return 'Organización reactiva';
   if (score <= 18) return 'Organización fragmentada';
@@ -645,37 +656,33 @@ function getEstado(score) {
 }
 
 function getEstadoLabel(estado) {
-  if (estado === 'critica')   return '<span class="semaforo sem-critica">Crítica</span>';
+  if (estado === 'critica')    return '<span class="semaforo sem-critica">Crítica</span>';
   if (estado === 'intermedia') return '<span class="semaforo sem-intermedia">En desarrollo</span>';
   return '<span class="semaforo sem-fuerte">Fortaleza</span>';
 }
 
 function getBarraClass(estado) {
-  if (estado === 'critica')   return 'barra-critica';
+  if (estado === 'critica')    return 'barra-critica';
   if (estado === 'intermedia') return 'barra-intermedia';
   return 'barra-fuerte';
 }
 
-// ── MAIN ───────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  // Leer sessionStorage
   var raw = sessionStorage.getItem('coopchain_evaluacion');
   if (!raw) {
-    window.location.href = 'evaluacion-ia-blockchain.html';
+    window.location.href = 'evaluacion-ia-blockchain';
     return;
   }
   var d = JSON.parse(raw);
   var scores = d.scores;
   var nivel  = getNivel(scores.total);
 
-  // ── HERO ──
   document.getElementById('resOrg').textContent     = d.organizacion || '—';
   document.getElementById('resFecha').textContent   = 'Resultado del ' + (d.fecha || new Date().toLocaleDateString('es-AR'));
   document.getElementById('resNivel').textContent   = nivel;
   document.getElementById('resPuntaje').textContent = scores.total;
   document.getElementById('resResumen').textContent = RESUMENES[nivel] || '';
 
-  // ── DIMENSIONES (array ordenado) ──
   var dimScores = [
     { key:'percepcion', label:'Percepción estratégica',       val: scores.percepcion },
     { key:'sistemica',  label:'Visión sistémica',              val: scores.sistemica  },
@@ -685,9 +692,9 @@ window.addEventListener('DOMContentLoaded', function() {
     { key:'valor',      label:'Modelo de valor y comunidad',   val: scores.valor      }
   ];
 
-  // ── RADAR ──
-  Chart.defaults.color = '#8aab95';
-  Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+  // RADAR
+  Chart.defaults.color = '#4a6a4a';
+  Chart.defaults.borderColor = 'rgba(0,0,0,0.06)';
   var ctx = document.getElementById('radarChart').getContext('2d');
   new Chart(ctx, {
     type: 'radar',
@@ -708,17 +715,17 @@ window.addEventListener('DOMContentLoaded', function() {
       scales:{
         r:{
           min:0, max:6,
-          ticks:{ stepSize:2, color:'#8aab95', backdropColor:'transparent' },
-          grid:{ color:'rgba(255,255,255,.08)' },
-          angleLines:{ color:'rgba(255,255,255,.08)' },
-          pointLabels:{ color:'#4a6a4a', font:{ size:10 } }
+          ticks:{ stepSize:2, color:'#4a6a4a', backdropColor:'transparent', font:{ size:11 } },
+          grid:{ color:'rgba(0,0,0,.08)' },
+          angleLines:{ color:'rgba(0,0,0,.08)' },
+          pointLabels:{ color:'#1a2e1a', font:{ size:11 } }
         }
       },
       plugins:{ legend:{ display:false } }
     }
   });
 
-  // ── BARRAS ──
+  // BARRAS
   var barrasWrap = document.getElementById('barrasWrap');
   dimScores.forEach(function(dim) {
     var estado = getEstado(dim.val);
@@ -730,17 +737,16 @@ window.addEventListener('DOMContentLoaded', function() {
       '<div class="barra-bg"><div class="barra-fill" data-w="' + pct + '"></div></div>';
     barrasWrap.appendChild(div);
   });
-  // animar barras
   setTimeout(function(){
     document.querySelectorAll('.barra-fill').forEach(function(b){
       b.style.width = b.dataset.w + '%';
     });
   }, 300);
 
-  // ── TABLA INTERPRETATIVA ──
+  // TABLA
   var tabla = document.getElementById('tablaDims');
   dimScores.forEach(function(dim) {
-    var estado  = getEstado(dim.val);
+    var estado     = getEstado(dim.val);
     var comentario = COMENTARIOS[dim.key][estado];
     var row = document.createElement('div');
     row.className = 'tabla-row';
@@ -750,24 +756,22 @@ window.addEventListener('DOMContentLoaded', function() {
         '<p>' + comentario + '</p>' +
       '</div>' +
       '<div class="tabla-row-right">' +
-        '<span class="tabla-puntaje">' + dim.val + '<span style="font-size:.9rem;color:var(--muted)">/6</span></span>' +
+        '<span class="tabla-puntaje">' + dim.val + '<span style="font-size:1rem;color:var(--muted)">/6</span></span>' +
         getEstadoLabel(estado) +
       '</div>';
     tabla.appendChild(row);
   });
 
-  // ── ZONAS CIEGAS Y FORTALEZAS ──
+  // ZONAS
   var sorted = dimScores.slice().sort(function(a,b){ return a.val - b.val });
   var ciega  = sorted[0];
   var fuerte = sorted[sorted.length - 1];
-
   document.getElementById('zonaCiegaNombre').textContent = ciega.label;
   document.getElementById('zonaCiegaTexto').textContent  = COMENTARIOS[ciega.key][getEstado(ciega.val)];
   document.getElementById('zonaFuerteNombre').textContent = fuerte.label;
   document.getElementById('zonaFuerteTexto').textContent  = COMENTARIOS[fuerte.key][getEstado(fuerte.val)];
 
-  // ── PREGUNTAS DIRECTIVAS ──
-  // Las 3 dimensiones más bajas
+  // PREGUNTAS
   var debilesKeys = sorted.slice(0,3).map(function(d){ return d.key });
   var lista = document.getElementById('preguntasList');
   debilesKeys.forEach(function(key, i) {
