@@ -79,10 +79,12 @@ async function guardProtectedPages() {
       const supa = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       const { data, error } = await supa.rpc('verificar_acceso_dialogar', { p_email: user.email });
       if (error || !data) {
+        setUser({ ...user, nivel: 'videos' });
         window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
         return;
       }
     } catch (e) {
+      setUser({ ...user, nivel: 'videos' });
       window.location.href = `registro.html?next=${encodeURIComponent(current)}`;
       return;
     }
