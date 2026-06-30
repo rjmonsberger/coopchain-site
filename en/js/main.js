@@ -135,6 +135,8 @@ function handleRegistrationForm() {
 
       if (updateError) {
         console.error('Error updating evento to ambas:', updateError.message);
+        showMessage('An error occurred while enabling access. Please try again.', 'error');
+        return;
       }
       setUser({ ...userActual, nivel: 'dialogar' });
       showMessage('Access enabled. Redirecting...', 'success');

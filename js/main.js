@@ -150,6 +150,8 @@ function handleRegistrationForm() {
 
         if (updateError) {
           console.error('Error al actualizar evento a ambas:', updateError.message);
+          showMessage('Ocurrió un error al habilitar el acceso. Intentá de nuevo.', 'error');
+          return;
         }
       setUser({ ...userActual, nivel: 'dialogar' });
       showMessage('Acceso habilitado. Redirigiendo...', 'success');
